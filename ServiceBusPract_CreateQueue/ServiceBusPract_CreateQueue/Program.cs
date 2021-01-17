@@ -9,7 +9,7 @@ namespace ServiceBusPract_CreateQueue
     class Program
     {
         private static string _bus_connectionstring = Settings._bus_connectionstring;
-        private static string _queue_name = $"{Settings._queue_name}_Three";
+        private static string _queue_name = $"{Settings._queue_name}_One";
         static async Task Main(string[] args)
         {
             CreateQueue(_queue_name).Wait();

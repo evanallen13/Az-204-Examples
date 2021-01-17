@@ -23,6 +23,8 @@ namespace ServiceBusPract_Filter
                 var _message = new Message(Encoding.UTF8.GetBytes(obj.ToString()));
                 _message.MessageId = $"{i}";
                 _message.UserProperties.Add("Category", Exams[i]);
+                _message.CorrelationId = "A";
+
                 await _client.SendAsync(_message);
                 Console.WriteLine($"Sending Message : {obj.Id} ");
 

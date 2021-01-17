@@ -18,7 +18,7 @@ namespace ServiceBusPract
 
         static async Task Main(string[] args)
         {
-            await sendMessage();
+            //await sendMessage();
             RecieveMessage().GetAwaiter().GetResult();
         }
 
@@ -55,8 +55,8 @@ namespace ServiceBusPract
             Console.WriteLine(Encoding.UTF8.GetString(_message.Body));
 
             Object qty;
-            _message.UserProperties.TryGetValue("Quantity", out qty);
-            Console.WriteLine(qty);
+            _message.UserProperties.TryGetValue("url", out qty);
+            Console.WriteLine($">>>>>>> {qty}");
 
            // await _Client.CompleteAsync(_message.SystemProperties.LockToken);
 
