@@ -40,6 +40,6 @@ namespace KV_WebApp
            ).UseStartup<Startup>()
             .Build();
 
-        private static string GetKeyVaultEndpoint() => "url";
+        private static string GetKeyVaultEndpoint() => "https://keyvault798.vault.azure.net";
     }
 }
