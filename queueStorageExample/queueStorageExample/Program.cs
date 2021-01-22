@@ -2,6 +2,8 @@
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace queueStorageExample
 {
@@ -15,11 +17,9 @@ namespace queueStorageExample
 
         static async Task Main(string[] args)
         {
-         
-            for(int i = 0; i <= 10; i++)
-            {
-                await sendMessage();
-            }
+
+            await sendMessage();
+
             await recieveMessage();
             Console.ReadLine();
         }
@@ -31,7 +31,7 @@ namespace queueStorageExample
 
         static async Task sendMessage()
         {
-            var message = new CloudQueueMessage($"your message here {Guid.NewGuid()}");
+            var message = new CloudQueueMessage(createMessage());
 
             await queue.AddMessageAsync(message);
         }
@@ -56,6 +56,16 @@ namespace queueStorageExample
             }
 
 
+        }
+
+        static string createMessage()
+        {
+            WeatherForcast weatherFocast = new WeatherForcast();
+            weatherFocast.Date = DateTime.Now;
+            weatherFocast.TemperatureCelsius = 23;
+            weatherFocast.Summary = "Sunny";
+
+            return JsonSerializer.Serialize(weatherFocast);
         }
     }
 }
