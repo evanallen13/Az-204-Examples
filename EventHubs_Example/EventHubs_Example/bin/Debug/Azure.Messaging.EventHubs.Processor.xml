@@ -1,0 +1,2964 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Azure.Messaging.EventHubs.Processor</name>
+    </assembly>
+    <members>
+        <member name="T:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource">
+             <summary>
+               EventSource for Azure-Messaging-EventHubs-Processor-BlobEventStore traces.
+             </summary>
+            
+             <remarks>
+               When defining Start/Stop tasks, the StopEvent.Id must be exactly StartEvent.Id + 1.
+            
+               Do not explicitly include the Guid here, since EventSource has a mechanism to automatically
+               map to an EventSource Guid based on the Name (Azure-Messaging-EventHubs-Processor-BlobEventStore).
+             </remarks>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.EventSourceName">
+            <summary>The name to use for the event source.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.Log">
+             <summary>
+               Provides a singleton instance of the event source for callers to
+               use for logging.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.#ctor">
+             <summary>
+               Prevents an instance of the <see cref="T:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource"/> class from being created
+               outside the scope of this library.  Exposed for testing purposes only.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.#ctor(System.String)">
+             <summary>
+               Prevents an instance of the <see cref="T:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource"/> class from being created
+               outside the scope of this library.  Exposed for testing purposes only.
+             </summary>
+            
+             <param name="eventSourceName">The name to assign to the event source.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.BlobsCheckpointStoreCreated(System.String,System.String,System.String)">
+             <summary>
+               Indicates that a <see cref="T:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore" /> was created.
+             </summary>
+            
+             <param name="typeName">The type name for the checkpoint store.</param>
+             <param name="accountName">The Storage account name corresponding to the associated container client.</param>
+             <param name="containerName">The name of the associated container client.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ListOwnershipStart(System.String,System.String,System.String)">
+             <summary>
+               Indicates that an attempt to retrieve a list of ownership has started.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership are associated with.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ListOwnershipComplete(System.String,System.String,System.String,System.Int32)">
+             <summary>
+               Indicates that an attempt to retrieve a list of ownership has completed.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership are associated with.</param>
+             <param name="ownershipCount">The amount of ownership received from the storage service.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ListOwnershipError(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an unhandled exception was encountered while retrieving a list of ownership.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership are associated with.</param>
+             <param name="errorMessage">The message for the exception that occurred.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ClaimOwnershipStart(System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an attempt to claim a partition ownership has started.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition being claimed.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership is associated with.</param>
+             <param name="ownerIdentifier">The identifier of the processor that attempted to claim the ownership for.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ClaimOwnershipComplete(System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an attempt to retrieve claim partition ownership has completed.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition being claimed.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership is associated with.</param>
+             <param name="ownerIdentifier">The identifier of the processor that attempted to claim the ownership for.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ClaimOwnershipError(System.String,System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an exception was encountered while attempting to retrieve claim partition ownership.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition being claimed.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership is associated with.</param>
+             <param name="ownerIdentifier">The identifier of the processor that attempted to claim the ownership for.</param>
+             <param name="errorMessage">The message for the exception that occurred.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.OwnershipNotClaimable(System.String,System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that ownership was unable to be claimed.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition being claimed.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership is associated with.</param>
+             <param name="ownerIdentifier">The identifier of the processor that attempted to claim the ownership for.</param>
+             <param name="message">The message for the failure.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.OwnershipClaimed(System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that ownership was successfully claimed.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition being claimed.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership is associated with.</param>
+             <param name="ownerIdentifier">The identifier of the processor that attempted to claim the ownership for.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ListCheckpointsStart(System.String,System.String,System.String)">
+             <summary>
+               Indicates that an attempt to retrieve a list of checkpoints has started.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the checkpoints are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the checkpoints are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the checkpoints are associated with.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ListCheckpointsComplete(System.String,System.String,System.String,System.Int32)">
+             <summary>
+               Indicates that an attempt to retrieve a list of checkpoints has completed.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the checkpoints are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the checkpoints are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the checkpoints are associated with.</param>
+             <param name="checkpointCount">The amount of checkpoints received from the storage service.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.ListCheckpointsError(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an unhandled exception was encountered while retrieving a list of checkpoints.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the checkpoints are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the checkpoints are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership are associated with.</param>
+             <param name="errorMessage">The message for the exception that occurred.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.UpdateCheckpointStart(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an attempt to create/update a checkpoint has started.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition being checkpointed.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the checkpoint is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the checkpoint is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the checkpoint is associated with.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.UpdateCheckpointComplete(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an attempt to update a checkpoint has completed.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition being checkpointed.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the checkpoint is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the checkpoint is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the checkpoint is associated with.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.UpdateCheckpointError(System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an unhandled exception was encountered while updating a checkpoint.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition being checkpointed.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the checkpoint is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the checkpoint is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the checkpoint is associated with.</param>
+             <param name="errorMessage">The message for the exception that occurred.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource.InvalidCheckpointFound(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that invalid checkpoint data was found during an attempt to retrieve a list of checkpoints.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition the data is associated with.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the data is associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the data is associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the data is associated with.</param>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource">
+             <summary>
+               Serves as an ETW event source for logging of information about
+               Event Processor client.
+             </summary>
+            
+             <remarks>
+               When defining Start/Stop tasks, it is highly recommended that the
+               the StopEvent.Id must be exactly StartEvent.Id + 1.
+             </remarks>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.EventSourceName">
+            <summary>The name to use for the event source.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.Log">
+             <summary>
+               Provides a singleton instance of the event source for callers to
+               use for logging.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.#ctor">
+             <summary>
+               Prevents an instance of the <see cref="T:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource"/> class from being created
+               outside the scope of this library.  Exposed for testing purposes only.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.#ctor(System.String)">
+             <summary>
+               Prevents an instance of the <see cref="T:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource"/> class from being created
+               outside the scope of this library.  Exposed for testing purposes only.
+             </summary>
+            
+             <param name="eventSourceName">The name to assign the event source.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.EventBatchProcessingStart(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> has begin processing a batch of events for a partition.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition whose processing is taking place.</param>
+             <param name="identifier">A unique name used to identify the event processor.</param>
+             <param name="eventHubName">The name of the Event Hub that the processor is associated with.</param>
+             <param name="consumerGroup">The name of the consumer group that the processor is associated with.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.EventBatchProcessingComplete(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> instance has experienced an exception while processing a batch of events.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition whose processing is taking place.</param>
+             <param name="identifier">A unique name used to identify the event processor.</param>
+             <param name="eventHubName">The name of the Event Hub that the processor is associated with.</param>
+             <param name="consumerGroup">The name of the consumer group that the processor is associated with.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.EventBatchProcessingError(System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that an <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> has completed processing for a batch of events.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition whose processing is taking place.</param>
+             <param name="identifier">A unique name used to identify the event processor.</param>
+             <param name="eventHubName">The name of the Event Hub that the processor is associated with.</param>
+             <param name="consumerGroup">The name of the consumer group that the processor is associated with.</param>
+             <param name="errorMessage">The message for the exception that occurred.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.UpdateCheckpointStart(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that process of updating the checkpoint in the chosen storage service has started.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition whose processing is taking place.</param>
+             <param name="identifier">A unique name used to identify the event processor.</param>
+             <param name="eventHubName">The name of the Event Hub that the processor is associated with.</param>
+             <param name="consumerGroup">The name of the consumer group that the processor is associated with.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.UpdateCheckpointComplete(System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that process of updating the checkpoint in the chosen storage service has completed.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition whose processing is taking place.</param>
+             <param name="identifier">A unique name used to identify the event processor.</param>
+             <param name="eventHubName">The name of the Event Hub that the processor is associated with.</param>
+             <param name="consumerGroup">The name of the consumer group that the processor is associated with.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource.UpdateCheckpointError(System.String,System.String,System.String,System.String,System.String)">
+             <summary>
+               Indicates that the process of updating the checkpoint in the chosen storage service has experienced an exception.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition whose processing is taking place.</param>
+             <param name="identifier">A unique name used to identify the event processor.</param>
+             <param name="eventHubName">The name of the Event Hub that the processor is associated with.</param>
+             <param name="consumerGroup">The name of the consumer group that the processor is associated with.</param>
+             <param name="errorMessage">The message for the exception that occurred.</param>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Processor.BlobMetadataKey">
+             <summary>
+               The set of keys to access or modify metadata for a blob.
+             </summary>
+            
+             <remarks>
+               The current storage SDK throws an exception when the key contains
+               an uppercase letter.
+             </remarks>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.BlobMetadataKey.OwnerIdentifier">
+            <summary>The key to the owner identifier metadata.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.BlobMetadataKey.Offset">
+            <summary>The key to the offset metadata.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.BlobMetadataKey.SequenceNumber">
+            <summary>The key to the sequence number metadata.</summary>
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore">
+             <summary>
+               A storage blob service that keeps track of checkpoints and ownership.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.DoubleQuotesExpression">
+            <summary>A regular expression used to capture strings enclosed in double quotes.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.IfNoneMatchAllTag">
+            <summary>An ETag value to be used for permissive matching when querying Storage.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.CheckpointPrefix">
+             <summary>
+               Specifies a string that filters the results to return only checkpoint blobs whose name begins
+               with the specified prefix.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.OwnershipPrefix">
+             <summary>
+               Specifies a string that filters the results to return only ownership blobs whose name begins
+               with the specified prefix.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.ContainerClient">
+             <summary>
+               The client used to interact with the Azure Blob Storage service.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.RetryPolicy">
+             <summary>
+               The active policy which governs retry attempts for the
+               <see cref="T:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore" />.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.Logger">
+             <summary>
+               The instance of <see cref="T:Azure.Messaging.EventHubs.Processor.Diagnostics.BlobEventStoreEventSource" /> which can be mocked for testing.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.#ctor(Azure.Storage.Blobs.BlobContainerClient,Azure.Messaging.EventHubs.EventHubsRetryPolicy)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore"/> class.
+             </summary>
+            
+             <param name="blobContainerClient">The client used to interact with the Azure Blob Storage service.</param>
+             <param name="retryPolicy">The retry policy to use as the basis for interacting with the Storage Blobs service.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.ListOwnershipAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves a complete ownership list from the storage blob service.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership are associated with.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>An enumerable containing all the existing ownership for the associated Event Hub and consumer group.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.ClaimOwnershipAsync(System.Collections.Generic.IEnumerable{Azure.Messaging.EventHubs.Primitives.EventProcessorPartitionOwnership},System.Threading.CancellationToken)">
+             <summary>
+               Attempts to claim ownership of partitions for processing.
+             </summary>
+            
+             <param name="partitionOwnership">An enumerable containing all the ownership to claim.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>An enumerable containing the successfully claimed ownership.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.ListCheckpointsAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves a list of all the checkpoints in a data store for a given namespace, Event Hub and consumer group.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership are associated with.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>An enumerable containing all the existing checkpoints for the associated Event Hub and consumer group.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.UpdateCheckpointAsync(Azure.Messaging.EventHubs.Primitives.EventProcessorCheckpoint,Azure.Messaging.EventHubs.EventData,System.Threading.CancellationToken)">
+             <summary>
+               Updates the checkpoint using the given information for the associated partition and consumer group in the storage blob service.
+             </summary>
+            
+             <param name="checkpoint">The checkpoint containing the information to be stored.</param>
+             <param name="eventData">The event to use as the basis for the checkpoint's starting position.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>A task to be resolved on when the operation has completed.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.ApplyRetryPolicy(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+             <summary>
+               Applies the checkpoint store's <see cref="P:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.RetryPolicy" /> to a specified function.
+             </summary>
+            
+             <param name="functionToRetry">The function to which the retry policy should be applied.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>The value returned by the function to which the retry policy has been applied.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.ApplyRetryPolicy``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+             <summary>
+               Applies the checkpoint store's <see cref="P:Azure.Messaging.EventHubs.Processor.BlobsCheckpointStore.RetryPolicy" /> to a specified function.
+             </summary>
+            
+             <param name="functionToRetry">The function to which the retry policy should be applied.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <typeparam name="T">The type returned by the function to be executed.</typeparam>
+            
+             <returns>The value returned by the function to which the retry policy has been applied.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.EventProcessorClient">
+             <summary>
+               Allows for consuming and processing events across all partitions of a given Event Hub within the scope of a specific
+               consumer group.  The processor is capable of collaborating with other instances for the same Event Hub and consumer
+               group pairing to share work by using a common storage platform to communicate.  Fault tolerance is also built-in,
+               allowing the processor to be resilient in the face of errors.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient.EmptyEventUpdateCheckpoint">
+            <summary>The delegate to invoke when attempting to update a checkpoint using an empty event.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient.DefaultClientOptions">
+            <summary>The set of default options for the processor.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient.DefaultStartingPosition">
+            <summary>The default starting position for the processor.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient.PartitionStartingPositionDefaults">
+            <summary>The set of default starting positions for partitions being processed; these are collected at initialization and are surfaced as checkpoints to override defaults on a partition-specific basis.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient.ProcessorStatusGuard">
+            <summary>The primitive for synchronizing access during start and set handler operations.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient._partitionInitializingAsync">
+            <summary>The handler to be called just before event processing starts for a given partition.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient._partitionClosingAsync">
+            <summary>The handler to be called once event processing stops for a given partition.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient._processEventAsync">
+            <summary>Responsible for processing events received from the Event Hubs service.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient._processErrorAsync">
+            <summary>Responsible for processing unhandled exceptions thrown while this processor is running.</summary>
+        </member>
+        <member name="E:Azure.Messaging.EventHubs.EventProcessorClient.PartitionInitializingAsync">
+             <summary>
+                Performs the tasks to initialize a partition, and its associated context, for event processing.
+            
+               <para>It is not recommended that the state of the processor be managed directly from within this method; requesting to start or stop the processor may result in
+               a deadlock scenario, especially if using the synchronous form of the call.</para>
+             </summary>
+            
+        </member>
+        <member name="E:Azure.Messaging.EventHubs.EventProcessorClient.PartitionClosingAsync">
+             <summary>
+               Performs the tasks needed when processing for a partition is being stopped.  This commonly occurs when the partition is claimed by another event processor instance or when
+               the current event processor instance is shutting down.
+            
+               <para>It is not recommended that the state of the processor be managed directly from within this method; requesting to start or stop the processor may result in
+               a deadlock scenario, especially if using the synchronous form of the call.</para>
+             </summary>
+            
+        </member>
+        <member name="E:Azure.Messaging.EventHubs.EventProcessorClient.ProcessEventAsync">
+             <summary>
+              Performs the tasks needed to process a batch of events for a given partition as they are read from the Event Hubs service. Implementation is mandatory.
+            
+              <para>Should an exception occur within the code for this handler, the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> will allow it to bubble and will not surface to the error handler or attempt to handle
+               it in any way.  Developers are strongly encouraged to take exception scenarios into account, including the need to retry processing, and guard against them using try/catch blocks and other means,
+               as appropriate.</para>
+            
+              <para>It is not recommended that the state of the processor be managed directly from within this handler; requesting to start or stop the processor may result in
+               a deadlock scenario, especially if using the synchronous form of the call.</para>
+             </summary>
+            
+        </member>
+        <member name="E:Azure.Messaging.EventHubs.EventProcessorClient.ProcessErrorAsync">
+             <summary>
+               Performs the tasks needed when an unexpected exception occurs within the operation of the event processor infrastructure.  Implementation is mandatory.
+            
+               <para>This error handler is invoked when there is an exception observed within the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> itself; it is not invoked for exceptions in
+               code that has been implemented to process events or other event handlers and extension points that execute developer code.  The <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> will
+               make every effort to recover from exceptions and continue processing.  Should an exception that cannot be recovered from be encountered, the processor will attempt to forfeit
+               ownership of all partitions that it was processing so that work may be redistributed.</para>
+            
+               <para>The exceptions surfaced to this method may be fatal or non-fatal; because the processor may not be able to accurately predict whether an
+               exception was fatal or whether its state was corrupted, this method has responsibility for making the determination as to whether processing
+               should be terminated or restarted.  The method may do so by calling Stop on the processor instance and then, if desired, calling Start on the processor.</para>
+            
+               <para>It is recommended that, for production scenarios, the decision be made by considering observations made by this error handler, the method invoked
+               when initializing processing for a partition, and the method invoked when processing for a partition is stopped.  Many developers will also include
+               data from their monitoring platforms in this decision as well.</para>
+            
+               <para>As with event processing, should an exception occur in the code for the error handler, the event processor will allow it to bubble and will not attempt to handle
+               it in any way.  Developers are strongly encouraged to take exception scenarios into account and guard against them using try/catch blocks and other means as appropriate.</para>
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClient.FullyQualifiedNamespace">
+             <summary>
+               The fully qualified Event Hubs namespace that the processor is associated with.  This is likely
+               to be similar to <c>{yournamespace}.servicebus.windows.net</c>.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClient.EventHubName">
+             <summary>
+               The name of the Event Hub that the processor is connected to, specific to the
+               Event Hubs namespace that contains it.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClient.ConsumerGroup">
+             <summary>
+               The name of the consumer group this event processor is associated with.  Events will be
+               read only in the context of this group.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClient.IsRunning">
+             <summary>
+               Indicates whether or not this event processor is currently running.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClient.Identifier">
+             <summary>
+               A unique name used to identify this event processor.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClient.Logger">
+             <summary>
+               The instance of <see cref="T:Azure.Messaging.EventHubs.Processor.Diagnostics.EventProcessorClientEventSource" /> which can be mocked for testing.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClient.StorageManager">
+             <summary>
+               Responsible for creation of checkpoints and for ownership claim.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.#ctor(Azure.Storage.Blobs.BlobContainerClient,System.String,System.String)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient"/> class.
+             </summary>
+            
+             <param name="checkpointStore">The client responsible for persisting checkpoints and processor state to durable storage. The associated container is expected to exist.</param>
+             <param name="consumerGroup">The name of the consumer group this processor is associated with.  Events are read in the context of this group.</param>
+             <param name="connectionString">The connection string to use for connecting to the Event Hubs namespace; it is expected that the Event Hub name and the shared key properties are contained in this connection string.</param>
+            
+             <remarks>
+               <para>The container associated with the <paramref name="checkpointStore" /> is expected to exist; the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" />
+               does not assume the ability to manage the storage account and is safe to run with only read/write permission for blobs in the container.</para>
+            
+               <para>If the connection string is copied from the Event Hubs namespace, it will likely not contain the name of the desired Event Hub,
+               which is needed.  In this case, the name can be added manually by adding ";EntityPath=[[ EVENT HUB NAME ]]" to the end of the
+               connection string.  For example, ";EntityPath=telemetry-hub".
+            
+               If you have defined a shared access policy directly on the Event Hub itself, then copying the connection string from that
+               Event Hub will result in a connection string that contains the name.</para>
+             </remarks>
+            
+             <seealso href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-get-connection-string"/>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.#ctor(Azure.Storage.Blobs.BlobContainerClient,System.String,System.String,Azure.Messaging.EventHubs.EventProcessorClientOptions)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient"/> class.
+             </summary>
+            
+             <param name="checkpointStore">The client responsible for persisting checkpoints and processor state to durable storage. The associated container is expected to exist.</param>
+             <param name="consumerGroup">The name of the consumer group this processor is associated with.  Events are read in the context of this group.</param>
+             <param name="connectionString">The connection string to use for connecting to the Event Hubs namespace; it is expected that the Event Hub name and the shared key properties are contained in this connection string.</param>
+             <param name="clientOptions">The set of options to use for this processor.</param>
+            
+             <remarks>
+               <para>The container associated with the <paramref name="checkpointStore" /> is expected to exist; the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" />
+               does not assume the ability to manage the storage account and is safe to run with only read/write permission for blobs in the container.</para>
+            
+               <para>If the connection string is copied from the Event Hubs namespace, it will likely not contain the name of the desired Event Hub,
+               which is needed.  In this case, the name can be added manually by adding ";EntityPath=[[ EVENT HUB NAME ]]" to the end of the
+               connection string.  For example, ";EntityPath=telemetry-hub".
+            
+               If you have defined a shared access policy directly on the Event Hub itself, then copying the connection string from that
+               Event Hub will result in a connection string that contains the name.</para>
+             </remarks>
+            
+             <seealso href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-get-connection-string"/>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.#ctor(Azure.Storage.Blobs.BlobContainerClient,System.String,System.String,System.String)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient"/> class.
+             </summary>
+            
+             <param name="checkpointStore">The client responsible for persisting checkpoints and processor state to durable storage. The associated container is expected to exist.</param>
+             <param name="consumerGroup">The name of the consumer group this processor is associated with.  Events are read in the context of this group.</param>
+             <param name="connectionString">The connection string to use for connecting to the Event Hubs namespace; it is expected that the shared key properties are contained in this connection string, but not the Event Hub name.</param>
+             <param name="eventHubName">The name of the specific Event Hub to associate the processor with.</param>
+            
+             <remarks>
+               <para>The container associated with the <paramref name="checkpointStore" /> is expected to exist; the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" />
+               does not assume the ability to manage the storage account and is safe to run with only read/write permission for blobs in the container.</para>
+            
+               <para>If the connection string is copied from the Event Hub itself, it will contain the name of the desired Event Hub,
+               and can be used directly without passing the <paramref name="eventHubName" />.  The name of the Event Hub should be
+               passed only once, either as part of the connection string or separately.</para>
+             </remarks>
+            
+             <seealso href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-get-connection-string"/>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.#ctor(Azure.Storage.Blobs.BlobContainerClient,System.String,System.String,System.String,Azure.Messaging.EventHubs.EventProcessorClientOptions)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient"/> class.
+             </summary>
+            
+             <param name="checkpointStore">The client responsible for persisting checkpoints and processor state to durable storage. The associated container is expected to exist.</param>
+             <param name="consumerGroup">The name of the consumer group this processor is associated with.  Events are read in the context of this group.</param>
+             <param name="connectionString">The connection string to use for connecting to the Event Hubs namespace; it is expected that the shared key properties are contained in this connection string, but not the Event Hub name.</param>
+             <param name="eventHubName">The name of the specific Event Hub to associate the processor with.</param>
+             <param name="clientOptions">The set of options to use for this processor.</param>
+            
+             <remarks>
+               <para>The container associated with the <paramref name="checkpointStore" /> is expected to exist; the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" />
+               does not assume the ability to manage the storage account and is safe to run with only read/write permission for blobs in the container.</para>
+            
+               <para>If the connection string is copied from the Event Hub itself, it will contain the name of the desired Event Hub,
+               and can be used directly without passing the <paramref name="eventHubName" />.  The name of the Event Hub should be
+               passed only once, either as part of the connection string or separately.</para>
+             </remarks>
+            
+             <seealso href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-get-connection-string"/>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.#ctor(Azure.Storage.Blobs.BlobContainerClient,System.String,System.String,System.String,Azure.Core.TokenCredential,Azure.Messaging.EventHubs.EventProcessorClientOptions)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient"/> class.
+             </summary>
+            
+             <param name="checkpointStore">The client responsible for persisting checkpoints and processor state to durable storage. The associated container is expected to exist.</param>
+             <param name="consumerGroup">The name of the consumer group this processor is associated with.  Events are read in the context of this group.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace to connect to.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub to associate the processor with.</param>
+             <param name="credential">The Azure identity credential to use for authorization.  Access controls may be specified by the Event Hubs namespace or the requested Event Hub, depending on Azure configuration.</param>
+             <param name="clientOptions">The set of options to use for this processor.</param>
+            
+             <remarks>
+               The container associated with the <paramref name="checkpointStore" /> is expected to exist; the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" />
+               does not assume the ability to manage the storage account and is safe to run without permission to manage the storage account.
+             </remarks>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.#ctor(Azure.Messaging.EventHubs.Primitives.StorageManager,System.String,System.String,System.String,System.Int32,Azure.Core.TokenCredential,Azure.Messaging.EventHubs.Primitives.EventProcessorOptions)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient"/> class.
+             </summary>
+            
+             <param name="storageManager">Responsible for creation of checkpoints and for ownership claim.</param>
+             <param name="consumerGroup">The name of the consumer group this processor is associated with.  Events are read in the context of this group.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace to connect to.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub to associate the processor with.</param>
+             <param name="cacheEventCount">The maximum number of events that will be read from the Event Hubs service and held in a local memory cache when reading is active and events are being emitted to an enumerator for processing.</param>
+             <param name="credential">An Azure identity credential to satisfy base class requirements; this credential may not be <c>null</c> but will only be used in the case that <see cref="M:Azure.Messaging.EventHubs.EventProcessorClient.CreateConnection" /> has not been overridden.</param>
+             <param name="clientOptions">The set of options to use for this processor.</param>
+            
+             <remarks>
+               This constructor is intended only to support functional testing and mocking; it should not be used for production scenarios.
+             </remarks>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.#ctor">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient"/> class.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.StartProcessingAsync(System.Threading.CancellationToken)">
+             <summary>
+               Signals the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> to begin processing events.  Should this method be called while the processor
+               is running, no action is taken.
+             </summary>
+            
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the start operation.  This won't affect the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> once it starts running.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.StartProcessing(System.Threading.CancellationToken)">
+             <summary>
+               Signals the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> to begin processing events.  Should this method be called while the processor
+               is running, no action is taken.
+             </summary>
+            
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the start operation.  This won't affect the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> once it starts running.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.StopProcessingAsync(System.Threading.CancellationToken)">
+             <summary>
+               Signals the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> to stop processing events.  Should this method be called while the processor
+               is not running, no action is taken.
+             </summary>
+            
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the stop operation.  If the operation is successfully canceled, the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> will keep running.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.StopProcessing(System.Threading.CancellationToken)">
+             <summary>
+               Signals the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> to stop processing events.  Should this method be called while the processor
+               is not running, no action is taken.
+             </summary>
+            
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the stop operation.  If the operation is successfully canceled, the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> will keep running.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.Equals(System.Object)">
+             <summary>
+               Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+             </summary>
+            
+             <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            
+             <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.GetHashCode">
+             <summary>
+               Returns a hash code for this instance.
+             </summary>
+            
+             <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.ToString">
+             <summary>
+               Converts the instance to string representation.
+             </summary>
+            
+             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.UpdateCheckpointAsync(Azure.Messaging.EventHubs.EventData,Azure.Messaging.EventHubs.Consumer.PartitionContext,System.Threading.CancellationToken)">
+             <summary>
+               Updates the checkpoint using the given information for the associated partition and consumer group in the chosen storage service.
+             </summary>
+            
+             <param name="eventData">The event containing the information to be stored in the checkpoint.</param>
+             <param name="context">The context of the partition the checkpoint is associated with.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.CreateConnection">
+             <summary>
+               Creates an <see cref="T:Azure.Messaging.EventHubs.EventHubConnection" /> to use for communicating with the Event Hubs service.
+             </summary>
+            
+             <returns>The requested <see cref="T:Azure.Messaging.EventHubs.EventHubConnection" />.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.ListCheckpointsAsync(System.Threading.CancellationToken)">
+             <summary>
+               Produces a list of the available checkpoints for the Event Hub and consumer group associated with the
+               event processor instance, so that processing for a given set of partitions can be properly initialized.
+             </summary>
+            
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the processing.  This is most likely to occur when the processor is shutting down.</param>
+            
+             <returns>The set of checkpoints for the processor to take into account when initializing partitions.</returns>
+            
+             <remarks>
+               Should a partition not have a corresponding checkpoint, the <see cref="P:Azure.Messaging.EventHubs.Primitives.EventProcessorOptions.DefaultStartingPosition" /> will
+               be used to initialize the partition for processing.
+            
+               In the event that a custom starting point is desired for a single partition, or each partition should start at a unique place,
+               it is recommended that this method express that intent by returning checkpoints for those partitions with the desired custom
+               starting location set.
+             </remarks>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.ListOwnershipAsync(System.Threading.CancellationToken)">
+             <summary>
+               Produces a list of the ownership assignments for partitions between each of the cooperating event processor
+               instances for a given Event Hub and consumer group pairing.  This method is used when load balancing to allow
+               the processor to discover other active collaborators and to make decisions about how to best balance work
+               between them.
+             </summary>
+            
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the processing.  This is most likely to occur when the processor is shutting down.</param>
+            
+             <returns>The set of ownership records to take into account when making load balancing decisions.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.ClaimOwnershipAsync(System.Collections.Generic.IEnumerable{Azure.Messaging.EventHubs.Primitives.EventProcessorPartitionOwnership},System.Threading.CancellationToken)">
+             <summary>
+               Attempts to claim ownership of the specified partitions for processing.  This method is used by
+               load balancing to allow event processor instances to distribute the responsibility for processing
+               partitions for a given Event Hub and consumer group pairing amongst the active event processors.
+             </summary>
+            
+             <param name="desiredOwnership">The set of partition ownership desired by the event processor instance; this is the set of partitions that it will attempt to request responsibility for processing.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the processing.  This is most likely to occur when the processor is shutting down.</param>
+            
+             <returns>The set of ownership records for the partitions that were successfully claimed; this is expected to be the <paramref name="desiredOwnership"/> or a subset of those partitions.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.OnProcessingEventBatchAsync(System.Collections.Generic.IEnumerable{Azure.Messaging.EventHubs.EventData},Azure.Messaging.EventHubs.Primitives.EventProcessorPartition,System.Threading.CancellationToken)">
+             <summary>
+               Performs the tasks needed to process a batch of events for a given partition as they are read from the Event Hubs service.
+             </summary>
+            
+             <param name="events">The batch of events to be processed.</param>
+             <param name="partition">The context of the partition from which the events were read.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the processing.  This is most likely to occur when the processor is shutting down.</param>
+            
+             <remarks>
+               <para>The number of events in the <paramref name="events"/> batch may vary.  The batch will contain a number of events between zero and batch size that was
+               requested when the processor was created, depending on the availability of events in the partition within the requested <see cref="P:Azure.Messaging.EventHubs.Primitives.EventProcessorOptions.MaximumWaitTime"/>
+               interval.
+            
+               If there are enough events available in the Event Hub partition to fill a batch of the requested size, the processor will populate the batch and dispatch it to this method
+               immediately.  If there were not a sufficient number of events available in the partition to populate a full batch, the event processor will continue reading from the partition
+               to reach the requested batch size until the <see cref="P:Azure.Messaging.EventHubs.Primitives.EventProcessorOptions.MaximumWaitTime"/> has elapsed, at which point it will return a batch containing whatever events were
+               available by the end of that period.
+            
+               If a <see cref="P:Azure.Messaging.EventHubs.Primitives.EventProcessorOptions.MaximumWaitTime"/> was not requested, indicated by setting the option to <c>null</c>, the event processor will continue reading from the Event Hub
+               partition until a full batch of the requested size could be populated and will not dispatch any partial batches to this method.</para>
+            
+               <para>Should an exception occur within the code for this method, the event processor will allow it to bubble and will not surface to the error handler or attempt to handle
+               it in any way.  Developers are strongly encouraged to take exception scenarios into account and guard against them using try/catch blocks and other means as appropriate.</para>
+            
+               <para>It is not recommended that the state of the processor be managed directly from within this method; requesting to start or stop the processor may result in
+               a deadlock scenario, especially if using the synchronous form of the call.</para>
+             </remarks>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.OnProcessingErrorAsync(System.Exception,Azure.Messaging.EventHubs.Primitives.EventProcessorPartition,System.String,System.Threading.CancellationToken)">
+             <summary>
+               Performs the tasks needed when an unexpected exception occurs within the operation of the
+               event processor infrastructure.
+             </summary>
+            
+             <param name="exception">The exception that occurred during operation of the event processor.</param>
+             <param name="partition">The context of the partition associated with the error, if any; otherwise, <c>null</c>.  This may only be initialized for members of <see cref="T:Azure.Messaging.EventHubs.Primitives.EventProcessorPartition" />, depending on the point at which the error occurred.</param>
+             <param name="operationDescription">A short textual description of the operation during which the exception occurred; intended to be informational only.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the processing.  This is most likely to occur when the processor is shutting down.</param>
+            
+             <remarks>
+               This error handler is invoked when there is an exception observed within the event processor itself; it is not invoked for exceptions in
+               code that has been implemented to process events or other overrides and extension points that are not critical to the processor's operation.
+               The event processor will make every effort to recover from exceptions and continue processing.  Should an exception that cannot be recovered
+               from be encountered, the processor will attempt to forfeit ownership of all partitions that it was processing so that work may be redistributed.
+            
+               The exceptions surfaced to this method may be fatal or non-fatal; because the processor may not be able to accurately predict whether an
+               exception was fatal or whether its state was corrupted, this method has responsibility for making the determination as to whether processing
+               should be terminated or restarted.  The method may do so by calling Stop on the processor instance and then, if desired, calling Start on the processor.
+            
+               It is recommended that, for production scenarios, the decision be made by considering observations made by this error handler, the method invoked
+               when initializing processing for a partition, and the method invoked when processing for a partition is stopped.  Many developers will also include
+               data from their monitoring platforms in this decision as well.
+            
+               As with event processing, should an exception occur in the code for the error handler, the event processor will allow it to bubble and will not attempt to handle
+               it in any way.  Developers are strongly encouraged to take exception scenarios into account and guard against them using try/catch blocks and other means as appropriate.
+             </remarks>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.OnInitializingPartitionAsync(Azure.Messaging.EventHubs.Primitives.EventProcessorPartition,System.Threading.CancellationToken)">
+             <summary>
+               Performs the tasks to initialize a partition, and its associated context, for event processing.
+             </summary>
+            
+             <param name="partition">The context of the partition being initialized.  Only the well-known members of the <see cref="T:Azure.Messaging.EventHubs.Primitives.EventProcessorPartition" /> will be populated.  If a custom context is being used, the implementor of this method is responsible for initializing custom members.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the initialization.  This is most likely to occur if the partition is claimed by another event processor instance or the processor is shutting down.</param>
+            
+             <remarks>
+               It is not recommended that the state of the processor be managed directly from within this method; requesting to start or stop the processor may result in
+               a deadlock scenario, especially if using the synchronous form of the call.
+             </remarks>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.OnPartitionProcessingStoppedAsync(Azure.Messaging.EventHubs.Primitives.EventProcessorPartition,Azure.Messaging.EventHubs.Processor.ProcessingStoppedReason,System.Threading.CancellationToken)">
+             <summary>
+               Performs the tasks needed when processing for a partition is being stopped.  This commonly occurs when the partition
+               is claimed by another event processor instance or when the current event processor instance is shutting down.
+             </summary>
+            
+             <param name="partition">The context of the partition for which processing is being stopped.</param>
+             <param name="reason">The reason that processing is being stopped for the partition.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the processing.  This is not expected to signal under normal circumstances and will only occur if the processor encounters an unrecoverable error.</param>
+            
+             <remarks>
+               It is not recommended that the state of the processor be managed directly from within this method; requesting to start or stop the processor may result in
+               a deadlock scenario, especially if using the synchronous form of the call.
+             </remarks>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.CreateStorageManager(Azure.Storage.Blobs.BlobContainerClient)">
+             <summary>
+               Creates a <see cref="P:Azure.Messaging.EventHubs.EventProcessorClient.StorageManager" /> to use for interacting with durable storage.
+             </summary>
+            
+             <param name="checkpointStore">The client responsible for interaction with durable storage, responsible for persisting checkpoints and load-balancing state.</param>
+            
+             <returns>A <see cref="P:Azure.Messaging.EventHubs.EventProcessorClient.StorageManager" /> with the requested configuration.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.ProcessCheckpointStartingPositions(System.Collections.Generic.IEnumerable{Azure.Messaging.EventHubs.Primitives.EventProcessorCheckpoint})">
+             <summary>
+               Processes the starting positions for checkpoints, ensuring that any overrides set by the <see cref="E:Azure.Messaging.EventHubs.EventProcessorClient.PartitionInitializingAsync" />
+               handler are respected when no natural checkpoint exists for the partition.
+             </summary>
+            
+             <param name="sourceCheckpoints">The checkpoint set to process.</param>
+            
+             <returns>An enumerable consisting of the <paramref name="sourceCheckpoints"/> and a set of artificial checkpoints for any overrides applied to the starting position.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.EnsureNotRunningAndInvoke(System.Action)">
+             <summary>
+               Invokes a specified action only if this <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> instance is not running.
+             </summary>
+            
+             <param name="action">The action to invoke.</param>
+            
+             <exception cref="T:System.InvalidOperationException">Occurs when this method is invoked while the event processor is running.</exception>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.CreateOptions(Azure.Messaging.EventHubs.EventProcessorClientOptions)">
+             <summary>
+               Creates the set of options to pass to the base <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" />.
+             </summary>
+            
+             <param name="clientOptions">The set of client options for the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" /> instance.</param>
+            
+             <returns>The set of options to use for the base processor.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.EventProcessorClient.ProcessorPartitionContext">
+             <summary>
+               Represents a basic partition context for event processing within the processor client.
+             </summary>
+            
+             <seealso cref="T:Azure.Messaging.EventHubs.Consumer.PartitionContext" />
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClient.ProcessorPartitionContext._readLastEnqueuedEventProperties">
+            <summary>A function that can be used to read the last enqueued event properties for the partition.</summary>
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.ProcessorPartitionContext.#ctor(System.String,System.Func{Azure.Messaging.EventHubs.Consumer.LastEnqueuedEventProperties})">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient.EmptyPartitionContext" /> class.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition that the context represents.</param>
+             <param name="readLastEnqueuedEventProperties">A function that can be used to read the last enqueued event properties for the partition.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.ProcessorPartitionContext.ReadLastEnqueuedEventProperties">
+             <summary>
+               A set of information about the last enqueued event of a partition, not available for the
+               empty context.
+             </summary>
+            
+             <returns>The set of properties for the last event that was enqueued to the partition.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.EventProcessorClient.EmptyPartitionContext">
+             <summary>
+               Represents a basic partition context for event processing when the
+               full context was not available.
+             </summary>
+            
+             <seealso cref="T:Azure.Messaging.EventHubs.Consumer.PartitionContext" />
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.EmptyPartitionContext.#ctor(System.String)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient.EmptyPartitionContext" /> class.
+             </summary>
+            
+             <param name="partitionId">The identifier of the partition that the context represents.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClient.EmptyPartitionContext.ReadLastEnqueuedEventProperties">
+             <summary>
+               A set of information about the last enqueued event of a partition, not available for the
+               empty context.
+             </summary>
+            
+             <returns>The set of properties for the last event that was enqueued to the partition.</returns>
+            
+             <exception cref="T:System.InvalidOperationException">The method call is not available on the <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient.EmptyPartitionContext"/>.</exception>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.EventProcessorClientOptions">
+             <summary>
+               The set of options that can be specified when creating an <see cref="T:Azure.Messaging.EventHubs.EventProcessorClient" />
+               to configure its behavior.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClientOptions._maximumWaitTime">
+            <summary>The maximum amount of time to wait for an event to become available before emitting an <c>null</c> value.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClientOptions._cacheEventCount">
+            <summary>The event catch count to use when reading events.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClientOptions._prefetchCount">
+            <summary>The prefetch count to use when reading events.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClientOptions._connectionOptions">
+            <summary>The set of options to use for configuring the connection to the Event Hubs service.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.EventProcessorClientOptions._retryOptions">
+            <summary>The set of options to govern retry behavior and try timeouts.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.Identifier">
+             <summary>
+               A unique name used to identify the event processor.  If <c>null</c> or empty, a GUID will be used as the
+               identifier.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.TrackLastEnqueuedEventProperties">
+             <summary>
+               Indicates whether or not the consumer should request information on the last enqueued event on the partition
+               associated with a given event, and track that information as events are received.
+             </summary>
+            
+             <value><c>true</c> if information about a partition's last event should be requested and tracked; otherwise, <c>false</c>.</value>
+            
+             <remarks>
+               When information about a partition's last enqueued event is being tracked, each event received from the Event Hubs
+               service will carry metadata about the partition that it otherwise would not. This results in a small amount of
+               additional network bandwidth consumption that is generally a favorable trade-off when considered
+               against periodically making requests for partition properties using one of the Event Hub clients.
+             </remarks>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.LoadBalancingStrategy">
+             <summary>
+               The strategy that an event processor will use to make decisions about
+               partition ownership when performing load balancing to share work with
+               other event processors.
+             </summary>
+            
+             <seealso cref="T:Azure.Messaging.EventHubs.Processor.LoadBalancingStrategy" />
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.MaximumWaitTime">
+             <summary>
+               The maximum amount of time to wait for an event to become available for a given partition before emitting
+               an empty event.
+             </summary>
+            
+             <value>
+               If <c>null</c>, the processor will wait indefinitely for an event to become available; otherwise, a value will
+               always be emitted within this interval, whether an event was available or not.
+             </value>
+            
+             <remarks>
+               When set, if no events are received before the timeout, <see cref="E:Azure.Messaging.EventHubs.EventProcessorClient.ProcessEventAsync" />
+               is called with a <see cref="T:Azure.Messaging.EventHubs.Processor.ProcessEventArgs" /> instance that does not contain any event data. The
+               <see cref="P:Azure.Messaging.EventHubs.Processor.ProcessEventArgs.HasEvent" /> property is intended to help detect this.
+             </remarks>
+            
+             <seealso cref="P:Azure.Messaging.EventHubs.Processor.ProcessEventArgs.HasEvent" />
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.CacheEventCount">
+             <summary>
+               The maximum number of events that will be read from the Event Hubs service and held in a local memory
+               cache when reading is active and events are being emitted to an enumerator for processing.
+             </summary>
+            
+             <value>
+               The <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.CacheEventCount" /> is a control that developers can use to help tune performance for the specific
+               needs of an application, given its expected size of events, throughput needs, and expected scenarios for using
+               Event Hubs.
+             </value>
+            
+             <remarks>
+               The size of this cache has an influence on the efficiency of reading events from the Event Hubs service.  The
+               larger the size of the cache, the more efficiently service operations can be buffered in the background to
+               improve throughput.  This comes at the cost of additional memory use and potentially increases network I/O.
+            
+               For scenarios where the size of events is small and many events are flowing through the system, using a larger
+               <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.CacheEventCount"/> and <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.PrefetchCount" /> may help improve throughput.  For scenarios where
+               the size of events is larger or when processing of events is expected to be a heavier and slower operation, using
+               a smaller size <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.CacheEventCount"/> and <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.PrefetchCount"/> may help manage resource use without
+               incurring a non-trivial cost to throughput.
+            
+               Regardless of the values, it is generally recommended that the <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.PrefetchCount" /> be at least 2-3
+               times as large as the <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.CacheEventCount" /> to allow for efficient buffering of service operations.
+             </remarks>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.PrefetchCount">
+             <summary>
+               The number of events that will be eagerly requested from the Event Hubs service and staged locally without regard to
+               whether a reader is currently active, intended to help maximize throughput by buffering service operations rather than
+               readers needing to wait for service operations to complete.
+             </summary>
+            
+             <value>
+               The <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.PrefetchCount" /> is a control that developers can use to help tune performance for the specific
+               needs of an application, given its expected size of events, throughput needs, and expected scenarios for using
+               Event Hubs.
+             </value>
+            
+             <remarks>
+               The size of the prefetch count has an influence on the efficiency of reading events from the Event Hubs service.  The
+               larger the size of the cache, the more efficiently service operations can be buffered in the background to
+               improve throughput.  This comes at the cost of additional memory use and potentially increases network I/O.
+            
+               For scenarios where the size of events is small and many events are flowing through the system, using a larger
+               <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.CacheEventCount"/> and <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.PrefetchCount" /> may help improve throughput.  For scenarios where
+               the size of events is larger or when processing of events is expected to be a heavier and slower operation, using
+               a smaller size <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.CacheEventCount"/> and <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.PrefetchCount"/> may help manage resource use without
+               incurring a non-trivial cost to throughput.
+            
+               Regardless of the values, it is generally recommended that the <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.PrefetchCount" /> be at least 2-3
+               times as large as the <see cref="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.CacheEventCount" /> to allow for efficient buffering of service operations.
+             </remarks>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.ConnectionOptions">
+             <summary>
+               Gets or sets the options used for configuring the connection to the Event Hubs service.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventProcessorClientOptions.RetryOptions">
+             <summary>
+               The set of options to use for determining whether a failed operation should be retried and,
+               if so, the amount of time to wait between retry attempts.  These options also control the
+               amount of time allowed for publishing events and other interactions with the Event Hubs service.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClientOptions.Equals(System.Object)">
+             <summary>
+               Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+             </summary>
+            
+             <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            
+             <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClientOptions.GetHashCode">
+             <summary>
+               Returns a hash code for this instance.
+             </summary>
+            
+             <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClientOptions.ToString">
+             <summary>
+               Converts the instance to string representation.
+             </summary>
+            
+             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventProcessorClientOptions.Clone">
+             <summary>
+               Creates a new copy of the current <see cref="T:Azure.Messaging.EventHubs.EventProcessorClientOptions" />, cloning its attributes into a new instance.
+             </summary>
+            
+             <returns>A new copy of <see cref="T:Azure.Messaging.EventHubs.EventProcessorClientOptions" />.</returns>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.ResourcesNamespace.Current">
+            <summary>The default namespace of the local assembly; this is where the embedded resources appear.</summary>
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Core.BasicRetryPolicy">
+             <summary>
+               The default retry policy for the Event Hubs client library, respecting the
+               configuration specified as a set of <see cref="T:Azure.Messaging.EventHubs.EventHubsRetryOptions" />.
+             </summary>
+            
+             <seealso cref="T:Azure.Messaging.EventHubs.EventHubsRetryOptions"/>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.s_randomSeed">
+            <summary>The seed to use for initializing random number generated for a given thread-specific instance.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.RandomNumberGenerator">
+            <summary>The random number generator to use for a specific thread.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.Options">
+             <summary>
+               The set of options responsible for configuring the retry
+               behavior.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.JitterFactor">
+             <summary>
+               The factor to apply to the base delay for use as a base jitter value.
+             </summary>
+            
+             <value>This factor is used as the basis for random jitter to apply to the calculated retry duration.</value>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.MinimumThrottleSeconds">
+             <summary>
+               The minimum number of seconds to increase the calculated retry duration when a
+               service signals a request to throttle.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.MaximumThrottleSeconds">
+             <summary>
+               The maximum number of seconds to increase the calculated retry duration when a
+               service signals a request to throttle.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.#ctor(Azure.Messaging.EventHubs.EventHubsRetryOptions)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Core.BasicRetryPolicy"/> class.
+             </summary>
+            
+             <param name="retryOptions">The options which control the retry approach.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.CalculateTryTimeout(System.Int32)">
+             <summary>
+               Calculates the amount of time to allow the current attempt for an operation to
+               complete before considering it to be timed out.
+             </summary>
+            
+             <param name="attemptCount">The number of total attempts that have been made, including the initial attempt before any retries.</param>
+            
+             <returns>The amount of time to allow for an operation to complete.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.CalculateRetryDelay(System.Exception,System.Int32)">
+             <summary>
+               Calculates the amount of time to wait before another attempt should be made.
+             </summary>
+            
+             <param name="lastException">The last exception that was observed for the operation to be retried.</param>
+             <param name="attemptCount">The number of total attempts that have been made, including the initial attempt before any retries.</param>
+            
+             <returns>The amount of time to delay before retrying the associated operation; if <c>null</c>, then the operation is no longer eligible to be retried.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.ShouldRetryException(System.Exception)">
+             <summary>
+               Determines if an exception should be retried.
+             </summary>
+            
+             <param name="exception">The exception to consider.</param>
+            
+             <returns><c>true</c> to retry the exception; otherwise, <c>false</c>.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.IsThrottleException(System.Exception)">
+             <summary>
+               Determines if an exception represents a request to throttle.
+             </summary>
+            
+             <param name="exception">The exception to consider.</param>
+            
+             <returns><c>true</c> to consider the exception as a throttle request; otherwise, <c>false</c>.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.CalculateExponentialDelay(System.Int32,System.Double,System.Double,System.Random)">
+             <summary>
+               Calculates the delay for an exponential back-off.
+             </summary>
+            
+             <param name="attemptCount">The number of total attempts that have been made, including the initial attempt before any retries.</param>
+             <param name="baseDelaySeconds">The delay to use as a basis for the exponential back-off, in seconds.</param>
+             <param name="baseJitterSeconds">The delay to use as the basis for a random jitter value, in seconds.</param>
+             <param name="random">The random number generator to use for the calculation.</param>
+            
+             <returns>The recommended duration to delay before retrying; this value does not take the maximum delay or eligibility for retry into account.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.BasicRetryPolicy.CalculateFixedDelay(System.Double,System.Double,System.Random)">
+             <summary>
+               Calculates the delay for a fixed back-off.
+             </summary>
+            
+             <param name="baseDelaySeconds">The delay to use as a basis for the fixed back-off, in seconds.</param>
+             <param name="baseJitterSeconds">The delay to use as the basis for a random jitter value, in seconds.</param>
+             <param name="random">The random number generator to use for the calculation.</param>
+            
+             <returns>The recommended duration to delay before retrying; this value does not take the maximum delay or eligibility for retry into account.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Core.CancellationTokenExtensions">
+             <summary>
+               The set of extensions for the <see cref="T:System.Threading.CancellationToken" />
+               struct.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.CancellationTokenExtensions.ThrowIfCancellationRequested``1(System.Threading.CancellationToken)">
+             <summary>
+               Throws an exception of the requested type if cancellation has been requested
+               of the <paramref name="instance" />.
+             </summary>
+            
+             <typeparam name="T">The type of exception to throw; the type must have a parameterless constructor.</typeparam>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Core.ConnectionStringParser">
+             <summary>
+               Allows for parsing Event Hubs connection strings.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.EndpointToken">
+            <summary>The token that identifies the endpoint address for the Event Hubs namespace.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.EventHubNameToken">
+            <summary>The token that identifies the name of a specific Event Hub under the namespace.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.SharedAccessKeyNameToken">
+            <summary>The token that identifies the name of a shared access key.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.SharedAccessKeyValueToken">
+            <summary>The token that identifies the value of a shared access key.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.SharedAccessSignatureToken">
+            <summary>The token that identifies the value of a shared access signature.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.TokenValueSeparator">
+            <summary>The character used to separate a token and its value in the connection string.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.TokenValuePairDelimiter">
+            <summary>The character used to mark the beginning of a new token/value pair in the connection string.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.EventHubsEndpointSchemeName">
+            <summary>The name of the protocol used by an Event Hubs endpoint. </summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.ConnectionStringParser.EventHubsEndpointScheme">
+            <summary>The formatted protocol used by an Event Hubs endpoint. </summary>
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.ConnectionStringParser.Parse(System.String)">
+             <summary>
+               Parses the specified Event Hubs connection string into its component properties.
+             </summary>
+            
+             <param name="connectionString">The connection string to parse.</param>
+            
+             <returns>The component properties parsed from the connection string.</returns>
+            
+             <seealso cref="T:Azure.Messaging.EventHubs.Core.ConnectionStringProperties" />
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Core.ConnectionStringProperties">
+             <summary>
+               The set of properties that comprise a connection string from the
+               Azure portal.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.ConnectionStringProperties.Endpoint">
+             <summary>
+               The endpoint to be used for connecting to the Event Hubs namespace.
+             </summary>
+            
+             <value>The endpoint address, including protocol, from the connection string.</value>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.ConnectionStringProperties.EventHubName">
+             <summary>
+               The name of the specific Event Hub instance under the associated Event Hubs namespace.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.ConnectionStringProperties.SharedAccessKeyName">
+             <summary>
+               The name of the shared access key, either for the Event Hubs namespace
+               or the Event Hub.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.ConnectionStringProperties.SharedAccessKey">
+             <summary>
+               The value of the shared access key, either for the Event Hubs namespace
+               or the Event Hub.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Core.ConnectionStringProperties.SharedAccessSignature">
+             <summary>
+               The value of the fully-formed shared access signature, either for the Event Hubs
+               namespace or the Event Hub.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.ConnectionStringProperties.#ctor(System.Uri,System.String,System.String,System.String,System.String)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Core.ConnectionStringProperties"/> structure.
+             </summary>
+            
+             <param name="endpoint">The endpoint of the Event Hubs namespace.</param>
+             <param name="eventHubName">The name of the specific Event Hub under the namespace.</param>
+             <param name="sharedAccessKeyName">The name of the shared access key, to use authorization.</param>
+             <param name="sharedAccessKey">The shared access key to use for authorization.</param>
+             <param name="sharedAccessSignature">The precomputed shared access signature to use for authorization.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.ConnectionStringProperties.Validate(System.String,System.String)">
+             <summary>
+               Performs the actions needed to validate the set of connection string properties for connecting to the
+               Event Hubs service.
+             </summary>
+            
+             <param name="explicitEventHubName">The name of the Event Hub that was explicitly passed independent of the connection string, allowing easier use of a namespace-level connection string.</param>
+             <param name="connectionStringArgumentName">The name of the argument associated with the connection string; to be used when raising <see cref="T:System.ArgumentException" /> variants.</param>
+            
+             <exception cref="T:System.ArgumentException">In the case that the properties violate an invariant or otherwise represent a combination that is not permissible, an appropriate exception will be thrown.</exception>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Core.EventHubConnectionOptionsExtensions">
+             <summary>
+               The set of extension methods for the <see cref="T:Azure.Messaging.EventHubs.EventHubConnectionOptions" />
+               class.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.EventHubConnectionOptionsExtensions.Clone(Azure.Messaging.EventHubs.EventHubConnectionOptions)">
+             <summary>
+               Creates a new copy of the current <see cref="T:Azure.Messaging.EventHubs.EventHubConnectionOptions" />, cloning its attributes into a new instance.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+            
+             <returns>A new copy of <see cref="T:Azure.Messaging.EventHubs.EventHubConnectionOptions" />.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Core.EventHubsExceptionExtensions">
+             <summary>
+               The set of extension methods for the <see cref="T:Azure.Messaging.EventHubs.EventHubsException" /> class.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.EventHubsExceptionExtensions.FailureDataKey">
+            <summary>
+              The key to fetch the data FailureData value from the exception Data property.
+            </summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Core.EventHubsExceptionExtensions.FailureOperationKey">
+            <summary>
+              The key to fetch the data FailureOperation value from the exception Data property.
+            </summary>
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.EventHubsExceptionExtensions.GetFailureData``1(Azure.Messaging.EventHubs.EventHubsException)">
+             <summary>
+               Gets the data value related to the exception <see cref="T:Azure.Messaging.EventHubs.EventHubsException.FailureReason" />.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+            
+             <returns>The Data value or null.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.EventHubsExceptionExtensions.GetFailureOperation(Azure.Messaging.EventHubs.EventHubsException)">
+             <summary>
+               Gets the failed operation name related to the exception.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+            
+             <returns>The failed operation name.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.EventHubsExceptionExtensions.SetFailureData``1(Azure.Messaging.EventHubs.EventHubsException,``0)">
+             <summary>
+               Sets the data value related to the exception.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+             <param name="data">The value to store in the Exception Data.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.EventHubsExceptionExtensions.SetFailureOperation(Azure.Messaging.EventHubs.EventHubsException,System.String)">
+             <summary>
+               Sets the failed operation name related to the exception.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+             <param name="operationName">The failed operation name.</param>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Core.EventHubsRetryOptionsExtensions">
+             <summary>
+               The set of extension methods for the <see cref="T:Azure.Messaging.EventHubs.EventHubsRetryOptions" />
+               class.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.EventHubsRetryOptionsExtensions.Clone(Azure.Messaging.EventHubs.EventHubsRetryOptions)">
+             <summary>
+               Creates a new copy of the current <see cref="T:Azure.Messaging.EventHubs.EventHubsRetryOptions" />, cloning its attributes into a new instance.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+            
+             <returns>A new copy of <see cref="T:Azure.Messaging.EventHubs.EventHubsRetryOptions" />.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.EventHubsRetryOptionsExtensions.ToRetryPolicy(Azure.Messaging.EventHubs.EventHubsRetryOptions)">
+             <summary>
+               Converts the options into a retry policy for use.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+            
+             <returns>The <see cref="T:Azure.Messaging.EventHubs.EventHubsRetryPolicy" /> represented by the options.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.EventHubsRetryOptionsExtensions.IsEquivalentTo(Azure.Messaging.EventHubs.EventHubsRetryOptions,Azure.Messaging.EventHubs.EventHubsRetryOptions)">
+             <summary>
+               Compares retry options between two instances to determine if the
+               instances represent the same set of options.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+             <param name="other">The other set of retry options to consider.</param>
+            
+             <returns><c>true</c>, if the two sets of options are structurally equivalent; otherwise, <c>false</c>.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Core.TimeSpanExtensions">
+             <summary>
+               The set of extensions for the <see cref="T:System.TimeSpan" />
+               class.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Core.TimeSpanExtensions.CalculateRemaining(System.TimeSpan,System.TimeSpan)">
+             <summary>
+               Calculates the duration remaining in a given period, with consideration to
+               the amount of time that has already elapsed.
+             </summary>
+            
+             <param name="instance">The instance that this method was invoked on.</param>
+             <param name="elapsed">The amount of time that has already elapsed.</param>
+            
+             <returns>The amount of time remaining in the time period.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty">
+             <summary>
+               The set of well-known properties associated with Event Hubs diagnostics.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.DiagnosticIdAttribute">
+            <summary>The attribute which represents a unique identifier for the diagnostics context.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.ServiceContextAttribute">
+            <summary>The attribute which represents the Azure service to associate with diagnostics information.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.EventHubAttribute">
+            <summary>The attribute which represents the Event Hub instance to associate with diagnostics information.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.EndpointAttribute">
+            <summary>The attribute which represents the fully-qualified endpoint address of the Event Hubs namespace to associate with diagnostics information.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.EnqueuedTimeAttribute">
+            <summary>The attribute which represents the UNIX Epoch enqueued time of an event to associate with diagnostics information.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.EventHubsServiceContext">
+            <summary>The value which identifies the Event Hubs diagnostics context.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.EventHubProducerType">
+            <summary>The value which identifies an Event Hub producer as the type associated with the diagnostics information.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.KindAttribute">
+            <summary>The attribute which represents the kind of diagnostic scope.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.ProducerKind">
+            <summary>The value which identifies the message instrumentation scope kind.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.ClientKind">
+            <summary>The value which identifies the message client scope kind.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.ConsumerKind">
+            <summary>The value which identifies the processor scope kind.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.EventActivityName">
+             <summary>
+               The activity name associated with events.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.ProducerActivityName">
+             <summary>
+               The activity name associated with Event Hub producers.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.EventProcessorProcessingActivityName">
+             <summary>
+               The activity name associated with EventProcessor processing a list of events.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Diagnostics.DiagnosticProperty.EventProcessorCheckpointActivityName">
+             <summary>
+               The activity name associated with EventProcessor creating a checkpoint.
+             </summary>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Diagnostics.EventDataInstrumentation">
+             <summary>
+               Enables diagnostics instrumentation to be applied to <see cref="T:Azure.Messaging.EventHubs.EventData" />
+               instances.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.EventDataInstrumentation.DiagnosticNamespace">
+            <summary>The namespace used for the Event Hubs diagnostic scope.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.EventDataInstrumentation.ResourceProviderNamespace">
+            <summary>The namespace used for the Azure Resource Manager provider namespace.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Diagnostics.EventDataInstrumentation.ScopeFactory">
+             <summary>
+               The client diagnostics instance responsible for managing scope.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.EventDataInstrumentation.InstrumentEvent(Azure.Messaging.EventHubs.EventData,System.String,System.String)">
+             <summary>
+               Applies diagnostics instrumentation to a given event.
+             </summary>
+            
+             <param name="eventData">The event to instrument.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace to use for instrumentation.</param>
+             <param name="eventHubName">The name of the specific Event Hub to associate the event with.</param>
+            
+             <returns><c>true</c> if the event was instrumented in response to this request; otherwise, <c>false</c>.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.EventDataInstrumentation.TryExtractDiagnosticId(Azure.Messaging.EventHubs.EventData,System.String@)">
+             <summary>
+               Extracts a diagnostic id from the given event.
+             </summary>
+            
+             <param name="eventData">The event to instrument.</param>
+             <param name="id">The value of the diagnostics identifier assigned to the event. </param>
+            
+             <returns><c>true</c> if the event was contained the diagnostic id; otherwise, <c>false</c>.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.EventDataInstrumentation.ResetEvent(Azure.Messaging.EventHubs.EventData)">
+             <summary>
+               Resets the instrumentation associated with a given event.
+             </summary>
+            
+             <param name="eventData">The event to reset.</param>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource">
+             <summary>
+               Serves as an ETW event source for logging of information about Partition Load Balancer.
+             </summary>
+            
+             <remarks>
+               When defining Start/Stop tasks, it is highly recommended that the
+               the StopEvent.Id must be exactly StartEvent.Id + 1.
+             </remarks>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.EventSourceName">
+            <summary>The name to use for the event source.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.Log">
+             <summary>
+               Provides a singleton instance of the event source for callers to
+               use for logging.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.#ctor">
+             <summary>
+               Prevents an instance of the <see cref="T:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource"/> class from being created
+               outside the scope of this library.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.MinimumPartitionsPerEventProcessor(System.Int32)">
+             <summary>
+               Indicates the minimum amount of partitions every event processor needs to own when the distribution is balanced.
+             </summary>
+            
+             <param name="count"> Minimum partitions per event processor.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.CurrentOwnershipCount(System.Int32,System.String)">
+             <summary>
+               Indicates the current ownership count.
+             </summary>
+            
+             <param name="identifier">A unique name used to identify the associated event processor.</param>
+             <param name="count"> Current ownership count.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.UnclaimedPartitions(System.Collections.Generic.HashSet{System.String})">
+             <summary>
+               Indicates the list of unclaimed partitions.
+             </summary>
+            
+             <param name="unclaimedPartitions">List of unclaimed partitions.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.ClaimOwnershipStart(System.String)">
+             <summary>
+               Indicates that an attempt to claim ownership for a specific partition has started.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition whose ownership claim attempt is starting.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.ClaimOwnershipError(System.String,System.String)">
+             <summary>
+               Indicates that an exception was encountered while claiming ownership for a specific partition.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition.</param>
+             <param name="errorMessage">The message for the exception that occurred.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.ShouldStealPartition(System.String)">
+             <summary>
+               Indicates that the load is unbalanced and the associated event processor should own more partitions.
+             </summary>
+            
+             <param name="identifier">A unique name used to identify the associated event processor.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.StealPartition(System.String)">
+             <summary>
+               Indicates that stealable partitions were found, so randomly picking one of them to claim.
+             </summary>
+            
+             <param name="identifier">A unique name used to identify the associated event processor.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.RenewOwnershipStart(System.String)">
+             <summary>
+               Indicates that an attempt to renew ownership has started, so they don't expire.
+             </summary>
+            
+             <param name="identifier">A unique name used to identify the associated event processor.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.RenewOwnershipError(System.String,System.String)">
+             <summary>
+               Indicates that an exception was encountered while renewing ownership.
+             </summary>
+            
+             <param name="identifier">A unique name used to identify the associated event processor.</param>
+             <param name="errorMessage">The message for the exception that occurred.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource.RenewOwnershipComplete(System.String)">
+             <summary>
+               Indicates that an attempt to renew ownership has completed, so they don't expire.
+             </summary>
+            
+             <param name="identifier">A unique name used to identify the associated event processor.</param>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.EventHubSharedKeyCredential">
+             <summary>
+               Provides a credential based on a shared access signature for a given
+               Event Hub instance.
+             </summary>
+            
+             <seealso cref="T:Azure.Core.TokenCredential" />
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.SharedAccessKeyName">
+             <summary>
+               The name of the shared access key to be used for authorization, as
+               reported by the Azure portal.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.SharedAccessKey">
+             <summary>
+               The value of the shared access key to be used for authorization, as
+               reported by the Azure portal.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.SharedAccessSignatureCredential">
+             <summary>
+               A reference to a corresponding SharedAccessSignatureCredential.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.#ctor(System.String,System.String)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.EventHubSharedKeyCredential"/> class.
+             </summary>
+            
+             <param name="sharedAccessKeyName">The name of the shared access key to be used for authorization, as reported by the Azure portal.</param>
+             <param name="sharedAccessKey">The value of the shared access key to be used for authorization, as reported by the Azure portal.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.GetToken(Azure.Core.TokenRequestContext,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves the token that represents the shared access signature credential, for
+               use in authorization against an Event Hub.
+             </summary>
+            
+             <param name="requestContext">The details of the authentication request.</param>
+             <param name="cancellationToken">The token used to request cancellation of the operation.</param>
+            
+             <returns>The token representing the shared access signature for this credential.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.GetTokenAsync(Azure.Core.TokenRequestContext,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves the token that represents the shared access signature credential, for
+               use in authorization against an Event Hub.
+             </summary>
+            
+             <param name="requestContext">The details of the authentication request.</param>
+             <param name="cancellationToken">The token used to request cancellation of the operation.</param>
+            
+             <returns>The token representing the shared access signature for this credential.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.UpdateSharedAccessKey(System.String,System.String)">
+             <summary>
+               Allows the rotation of Shared Access Signatures.
+             </summary>
+            
+             <param name="keyName">The name of the shared access key that the signature should be based on.</param>
+             <param name="keyValue">The value of the shared access key for the signature.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.AsSharedAccessSignatureCredential(System.String,System.Nullable{System.TimeSpan})">
+             <summary>
+               Coverts to shared access signature credential.
+               It retains a reference to the generated SharedAccessSignatureCredential.
+             </summary>
+            
+             <param name="eventHubResource">The Event Hubs resource to which the token is intended to serve as authorization.</param>
+             <param name="signatureValidityDuration">The duration that the signature should be considered valid; if not specified, a default will be assumed.</param>
+            
+             <returns>A new <see cref="P:Azure.Messaging.EventHubs.EventHubSharedKeyCredential.SharedAccessSignatureCredential" /> based on the requested shared access key.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential">
+             <summary>
+               Provides a generic token-based credential for a given Event Hub instance.
+             </summary>
+            
+             <seealso cref="T:Azure.Core.TokenCredential" />
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential.DefaultScope">
+            <summary>The default scope used for token authentication with EventHubs.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential.Resource">
+             <summary>
+               The Event Hubs resource to which the token is intended to serve as authorization.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential.IsSharedAccessSignatureCredential">
+             <summary>
+               Indicates whether the credential is based on an Event Hubs
+               shared access signature.
+             </summary>
+            
+             <value><c>true</c> if the credential should be considered a SAS credential; otherwise, <c>false</c>.</value>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential.Credential">
+             <summary>
+               The <see cref="T:Azure.Core.TokenCredential" /> that forms the basis of this security token.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential.#ctor(Azure.Core.TokenCredential,System.String)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential"/> class.
+             </summary>
+            
+             <param name="tokenCredential">The <see cref="T:Azure.Core.TokenCredential" /> on which to base the token.</param>
+             <param name="eventHubResource">The Event Hubs resource to which the token is intended to serve as authorization.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential.GetToken(Azure.Core.TokenRequestContext,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves the token that represents the shared access signature credential, for
+               use in authorization against an Event Hub.
+             </summary>
+            
+             <param name="requestContext">The details of the authentication request.</param>
+             <param name="cancellationToken">The token used to request cancellation of the operation.</param>
+            
+             <returns>The token representing the shared access signature for this credential.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential.GetTokenAsync(Azure.Core.TokenRequestContext,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves the token that represents the shared access signature credential, for
+               use in authorization against an Event Hub.
+             </summary>
+            
+             <param name="requestContext">The details of the authentication request.</param>
+             <param name="cancellationToken">The token used to request cancellation of the operation.</param>
+            
+             <returns>The token representing the shared access signature for this credential.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.EventHubTokenCredential.GetTokenUsingDefaultScopeAsync(System.Threading.CancellationToken)">
+             <summary>
+               Retrieves the token that represents the shared access signature credential, for
+               use in authorization against an Event Hub. It provides a default value for the Token Request Context.
+             </summary>
+            
+             <param name="cancellationToken">The token used to request cancellation of the operation.</param>
+            
+             <returns>The token representing the shared access signature for this credential.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature">
+             <summary>
+               A shared access signature, which can be used for authorization to an Event Hubs namespace
+               or a specific Event Hub.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.MaximumKeyNameLength">
+            <summary>The maximum allowed length of the SAS key name.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.MaximumKeyLength">
+            <summary>The maximum allowed length of the SAS key.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.AuthenticationTypeToken">
+            <summary>The token that represents the type of authentication used.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.SignedResourceToken">
+            <summary>The token that identifies the signed component of the shared access signature.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.SignatureToken">
+            <summary>The token that identifies the signature component of the shared access signature.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.SignedKeyNameToken">
+            <summary>The token that identifies the signed SAS key component of the shared access signature.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.SignedExpiryToken">
+            <summary>The token that identifies the signed expiration time of the shared access signature.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.SignedResourceFullIdentifierToken">
+            <summary>The token that fully identifies the signed resource within the signature.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.TokenValueSeparator">
+            <summary>The character used to separate a token and its value in the connection string.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.TokenValuePairDelimiter">
+            <summary>The character used to mark the beginning of a new token/value pair in the signature.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.DefaultSignatureValidityDuration">
+            <summary>The default length of time to consider a signature valid, if not otherwise specified.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.Epoch">
+            <summary>Represents the Unix epoch time value, January 1, 1970 12:00:00, UTC.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.SharedAccessKeyName">
+             <summary>
+               The name of the shared access key, either for the Event Hubs namespace
+               or the Event Hub.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.SharedAccessKey">
+             <summary>
+               The value of the shared access key, either for the Event Hubs namespace
+               or the Event Hub.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.SignatureExpiration">
+             <summary>
+               The date and time that the shared access signature expires, in UTC.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.Resource">
+             <summary>
+               The resource to which the shared access signature is intended to serve as
+               authorization.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.Value">
+             <summary>
+               The shared access signature to be used for authorization, either for the Event Hubs namespace
+               or the Event Hub.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.#ctor(System.String,System.String,System.String,System.Nullable{System.TimeSpan})">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature"/> class.
+             </summary>
+            
+             <param name="eventHubResource">The Event Hubs resource to which the token is intended to serve as authorization.</param>
+             <param name="sharedAccessKeyName">The name of the shared access key that the signature should be based on.</param>
+             <param name="sharedAccessKey">The value of the shared access key for the signature.</param>
+             <param name="signatureValidityDuration">The duration that the signature should be considered valid; if not specified, a default will be assumed.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.#ctor(System.String,System.String)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature"/> class.
+             </summary>
+            
+             <param name="sharedAccessSignature">The shared access signature that will be parsed as the basis of this instance.</param>
+             <param name="sharedAccessKey">The value of the shared access key for the signature.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.#ctor(System.String)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature"/> class.
+             </summary>
+            
+             <param name="sharedAccessSignature">The shared access signature that will be parsed as the basis of this instance.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.#ctor(System.String,System.String,System.String,System.String,System.DateTimeOffset)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature" /> class.
+             </summary>
+            
+             <param name="eventHubResource">The Event Hubs resource to which the token is intended to serve as authorization.</param>
+             <param name="sharedAccessKeyName">The name of the shared access key that the signature should be based on.</param>
+             <param name="sharedAccessKey">The value of the shared access key for the signature.</param>
+             <param name="value">The shared access signature to be used for authorization.</param>
+             <param name="signatureExpiration">The date and time that the shared access signature expires, in UTC.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.CloneWithNewExpiration(System.TimeSpan)">
+             <summary>
+               Creates a new signature with the specified period for which the shared access signature is considered valid.
+             </summary>
+            
+             <param name="signatureValidityDuration">The duration that the signature should be considered valid.</param>
+            
+             <returns>A new <see cref="T:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature" /> based on the same key, but with a new expiration time.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.ToString">
+             <summary>
+               Converts the instance to string representation.
+             </summary>
+            
+             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.ParseSignature(System.String)">
+             <summary>
+               Parses a shared access signature into its component parts.
+             </summary>
+            
+             <param name="sharedAccessSignature">The shared access signature to parse.</param>
+            
+             <returns>The set of composite properties parsed from the signature.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.BuildSignature(System.String,System.String,System.String,System.DateTimeOffset)">
+             <summary>
+               Builds the shared access signature value, which can be used as a token for
+               access to the Event Hubs service.
+             </summary>
+            
+             <param name="audience">The audience scope to which this signature applies.</param>
+             <param name="sharedAccessKeyName">The name of the shared access key that the signature should be based on.</param>
+             <param name="sharedAccessKey">The value of the shared access key for the signature.</param>
+             <param name="expirationTime">The date/time, in UTC, that the signature expires.</param>
+            
+             <returns>The value of the shared access signature.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.ConvertFromUnixTime(System.Int64)">
+             <summary>
+               Converts a Unix-style timestamp into the corresponding <see cref="T:System.DateTimeOffset" />
+               value.
+             </summary>
+            
+             <param name="unixTime">The timestamp to convert.</param>
+            
+             <returns>The date/time, in UTC, which corresponds to the specified timestamp.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignature.ConvertToUnixTime(System.DateTimeOffset)">
+             <summary>
+               Converts a <see cref="T:System.DateTimeOffset" /> value to the corresponding Unix-style timestamp.
+             </summary>
+            
+             <param name="dateTimeOffset">The date/time to convert.</param>
+            
+             <returns>The Unix-style timestamp which corresponds to the specified date/time.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential">
+             <summary>
+               Provides a credential based on a shared access signature for a given
+               Event Hub instance.
+             </summary>
+            
+             <seealso cref="P:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.SharedAccessSignature" />
+             <seealso cref="T:Azure.Core.TokenCredential" />
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.SignatureRefreshBuffer">
+            <summary>The buffer to apply when considering refreshing; signatures that expire less than this duration will be refreshed.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.SignatureExtensionDuration">
+            <summary>The length of time extend signature validity, if a token was requested.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.SignatureSyncRoot">
+            <summary>Provides a target for synchronization to guard against concurrent token expirations.</summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.SharedAccessSignature">
+             <summary>
+               The shared access signature that forms the basis of this security token.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.#ctor(Azure.Messaging.EventHubs.Authorization.SharedAccessSignature)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential"/> class.
+             </summary>
+            
+             <param name="signature">The shared access signature on which to base the token.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.GetToken(Azure.Core.TokenRequestContext,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves the token that represents the shared access signature credential, for
+               use in authorization against an Event Hub.
+             </summary>
+            
+             <param name="requestContext">The details of the authentication request.</param>
+             <param name="cancellationToken">The token used to request cancellation of the operation.</param>
+            
+             <returns>The token representing the shared access signature for this credential.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.GetTokenAsync(Azure.Core.TokenRequestContext,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves the token that represents the shared access signature credential, for
+               use in authorization against an Event Hub.
+             </summary>
+            
+             <param name="requestContext">The details of the authentication request.</param>
+             <param name="cancellationToken">The token used to request cancellation of the operation.</param>
+            
+             <returns>The token representing the shared access signature for this credential.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Authorization.SharedAccessSignatureCredential.UpdateSharedAccessKey(System.String,System.String)">
+             <summary>
+               It creates a new shared signature using the key name and the key value passed as
+               input allowing credentials rotation. A call will not extend the signature duration.
+             </summary>
+            
+             <param name="keyName">The name of the shared access key that the signature should be based on.</param>
+             <param name="keyValue">The value of the shared access key for the signature.</param>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer">
+             <summary>
+               Handles all load balancing concerns for an event processor including claiming, stealing, and relinquishing ownership.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.RandomNumberGenerator">
+            <summary>The random number generator to use for a specific thread.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.s_randomSeed">
+            <summary>The seed to use for initializing random number generated for a given thread-specific instance.</summary>
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.StorageManager">
+             <summary>
+               Responsible for creation of checkpoints and for ownership claim.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.ActiveOwnershipWithDistribution">
+             <summary>
+               A partition distribution dictionary, mapping an owner's identifier to the amount of partitions it owns and its list of partitions.
+             </summary>
+            
+        </member>
+        <member name="F:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.OwnershipExpiration">
+             <summary>
+               The minimum amount of time for an ownership to be considered expired without further updates.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.FullyQualifiedNamespace">
+             <summary>
+               The fully qualified Event Hubs namespace that the processor is associated with.  This is likely
+               to be similar to <c>{yournamespace}.servicebus.windows.net</c>.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.EventHubName">
+             <summary>
+               The name of the Event Hub that the processor is connected to, specific to the
+               Event Hubs namespace that contains it.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.ConsumerGroup">
+             <summary>
+               The name of the consumer group this load balancer is associated with.  Events will be
+               read only in the context of this group.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.OwnerIdentifier">
+             <summary>
+               The identifier of the EventProcessorClient that owns this load balancer.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.LoadBalanceInterval">
+             <summary>
+               The minimum amount of time to be elapsed between two load balancing verifications.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.IsBalanced">
+             <summary>
+               Indicates whether the load balancer believes itself to be in a balanced state
+               when considering its fair share of partitions and whether any partitions
+               remain unclaimed.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.OwnedPartitionIds">
+             <summary>
+               The partitionIds currently owned by the associated event processor.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.Logger">
+             <summary>
+               The instance of <see cref="T:Azure.Messaging.EventHubs.Diagnostics.PartitionLoadBalancerEventSource" /> which can be mocked for testing.
+             </summary>
+            
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.InstanceOwnership">
+             <summary>
+               The set of partition ownership the associated event processor owns.  Partition ids are used as keys.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.#ctor(Azure.Messaging.EventHubs.Primitives.StorageManager,System.String,System.String,System.String,System.String,System.TimeSpan)">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer"/> class.
+             </summary>
+            
+             <param name="storageManager">Responsible for creation of checkpoints and for ownership claim.</param>
+             <param name="identifier">The identifier of the EventProcessorClient that owns this load balancer.</param>
+             <param name="consumerGroup">The name of the consumer group this load balancer is associated with.</param>
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace that the processor is associated with.</param>
+             <param name="eventHubName">The name of the Event Hub that the processor is associated with.</param>
+             <param name="ownershipExpiration">The minimum amount of time for an ownership to be considered expired without further updates.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.#ctor">
+             <summary>
+               Initializes a new instance of the <see cref="T:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer"/> class.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.RunLoadBalancingAsync(System.String[],System.Threading.CancellationToken)">
+             <summary>
+               Performs load balancing between multiple EventProcessorClient instances, claiming others' partitions to enforce
+               a more equal distribution when necessary.  It also manages its own partition processing tasks and ownership.
+             </summary>
+            
+             <param name="partitionIds">The set of partitionIds available for ownership balancing.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>The claimed ownership. <c>null</c> if this instance is not eligible, if no claimable ownership was found or if the claim attempt failed.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.RelinquishOwnershipAsync(System.Threading.CancellationToken)">
+             <summary>
+               Relinquishes this instance's ownership so they can be claimed by other processors and clears the OwnedPartitionIds.
+             </summary>
+            
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.FindAndClaimOwnershipAsync(System.Collections.Generic.IEnumerable{Azure.Messaging.EventHubs.Primitives.EventProcessorPartitionOwnership},System.Collections.Generic.HashSet{System.String},System.Int32,System.Threading.CancellationToken)">
+             <summary>
+               Finds and tries to claim an ownership if this processor instance is eligible to increase its ownership list.
+             </summary>
+            
+             <param name="completeOwnershipEnumerable">A complete enumerable of ownership obtained from the storage service.</param>
+             <param name="unclaimedPartitions">The set of partitionIds that are currently unclaimed.</param>
+             <param name="partitionCount">The count of partitions.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>A tuple indicating whether a claim was attempted and any ownership that was claimed.  The claimed ownership will be <c>null</c> if no claim was attempted or if the claim attempt failed.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.RenewOwnershipAsync(System.Threading.CancellationToken)">
+             <summary>
+               Renews this instance's ownership so they don't expire.
+             </summary>
+            
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.PartitionLoadBalancer.ClaimOwnershipAsync(System.String,System.Collections.Generic.IEnumerable{Azure.Messaging.EventHubs.Primitives.EventProcessorPartitionOwnership},System.Threading.CancellationToken)">
+             <summary>
+               Tries to claim ownership of the specified partition.
+             </summary>
+            
+             <param name="partitionId">The identifier of the Event Hub partition the ownership is associated with.</param>
+             <param name="completeOwnershipEnumerable">A complete enumerable of ownership obtained from the stored service provided by the user.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>A tuple indicating whether a claim was attempted and the claimed ownership. The claimed ownership will be <c>null</c> if the claim attempt failed.</returns>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Primitives.StorageManager">
+             <summary>
+               Deals with the interaction with the chosen storage service.  It's able to create checkpoints and
+               list/claim ownership.
+             </summary>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.StorageManager.ListOwnershipAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves a complete ownership list from the chosen storage service.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership are associated with.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>An enumerable containing all the existing ownership for the associated Event Hub and consumer group.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.StorageManager.ClaimOwnershipAsync(System.Collections.Generic.IEnumerable{Azure.Messaging.EventHubs.Primitives.EventProcessorPartitionOwnership},System.Threading.CancellationToken)">
+             <summary>
+               Attempts to claim ownership of partitions for processing.
+             </summary>
+            
+             <param name="partitionOwnership">An enumerable containing all the ownership to claim.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>An enumerable containing the successfully claimed ownership instances.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.StorageManager.ListCheckpointsAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+             <summary>
+               Retrieves a complete checkpoints list from the chosen storage service.
+             </summary>
+            
+             <param name="fullyQualifiedNamespace">The fully qualified Event Hubs namespace the ownership are associated with.  This is likely to be similar to <c>{yournamespace}.servicebus.windows.net</c>.</param>
+             <param name="eventHubName">The name of the specific Event Hub the ownership are associated with, relative to the Event Hubs namespace that contains it.</param>
+             <param name="consumerGroup">The name of the consumer group the ownership are associated with.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+             <returns>An enumerable containing all the existing checkpoints for the associated Event Hub and consumer group.</returns>
+            
+        </member>
+        <member name="M:Azure.Messaging.EventHubs.Primitives.StorageManager.UpdateCheckpointAsync(Azure.Messaging.EventHubs.Primitives.EventProcessorCheckpoint,Azure.Messaging.EventHubs.EventData,System.Threading.CancellationToken)">
+             <summary>
+               Updates the checkpoint using the given information for the associated partition and consumer group in the chosen storage service.
+             </summary>
+            
+             <param name="checkpoint">The checkpoint containing the information to be stored.</param>
+             <param name="eventData">The event to use as the basis for the checkpoint's starting position.</param>
+             <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken"/> instance to signal the request to cancel the operation.</param>
+            
+        </member>
+        <member name="T:Azure.Messaging.EventHubs.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.CannotParseIntegerType">
+            <summary>
+              Looks up a localized string similar to The {0} value is expected to be a {1} bit signed integer. Actual value: &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.CannotSendWithPartitionIdAndPartitionKey">
+            <summary>
+              Looks up a localized string similar to A producer created for a specific partition cannot send events using a partition key. This producer is associated with partition &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.CannotStartEventProcessorWithoutHandler">
+            <summary>
+              Looks up a localized string similar to Cannot begin processing without {0} handler set..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ClientNeededForThisInformationNotAvailable">
+            <summary>
+              Looks up a localized string similar to The Event Hub client responsible for this information is not available.
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ClosedConnectionCannotPerformOperation">
+            <summary>
+              Looks up a localized string similar to {0} has already been closed and cannot perform the requested operation..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ClosedInstanceCannotPerformOperation">
+            <summary>
+              Looks up a localized string similar to {0} has already been closed and cannot perform the requested operation..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ConsumerIdentifierOverMaxValue">
+            <summary>
+              Looks up a localized string similar to The &apos;identifier&apos; parameter exceeds the maximum allowed size of {0} characters..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.CouldNotAcquireAccessToken">
+            <summary>
+              Looks up a localized string similar to Unable to acquire an access token using the provided credential..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.CouldNotCreateLink">
+            <summary>
+              Looks up a localized string similar to Unable to create the items needed to communicate with the Event Hubs service..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.DeveloperCodeError">
+            <summary>
+              Looks up a localized string similar to An error was encountered while executing custom code, such as in an event handler..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.DeveloperCodeExceptionMessageMask">
+            <summary>
+              Looks up a localized string similar to [Developer Code Exception] : {0}..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.EventBatchIsLocked">
+            <summary>
+              Looks up a localized string similar to The event batch is currently being used in communication with the Event Hubs service; events may not be added until the active operation is complete..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.FailedToCreateReader">
+            <summary>
+              Looks up a localized string similar to Could not create a reader of events for Event Hub: &apos;{0}&apos;, partition: &apos;{1}&apos;, consumer group: &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.FailedToSerializeUnsupportedType">
+            <summary>
+              Looks up a localized string similar to Serialization failed due to an unsupported type, {0}..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.InvalidConnectionString">
+            <summary>
+              Looks up a localized string similar to The connection string could not be parsed; either it was malformed or contains no well-known tokens..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.InvalidEncoding">
+            <summary>
+              Looks up a localized string similar to The string has an invalid encoding format..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.InvalidEventPositionForFilter">
+            <summary>
+              Looks up a localized string similar to The event position is not valid for filtering.  It must have an offset, sequence number, or enqueued time available to filter against..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.InvalidFullyQualifiedNamespace">
+            <summary>
+              Looks up a localized string similar to The value '{0}' is not a well-formed Event Hubs fully qualified namespace..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.InvalidMessageBody">
+            <summary>
+              Looks up a localized string similar to An invalid message body was encountered.  Either the body was null or an incorrect type. Expected: {0}.
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.InvalidSharedAccessSignature">
+            <summary>
+              Looks up a localized string similar to The shared access signature could not be parsed; it was either malformed or incorrectly encoded..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.InvalidTimePeriod">
+            <summary>
+              Looks up a localized string similar to The time period may not be Zero or Infinite..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.InvalidTransportType">
+            <summary>
+              Looks up a localized string similar to The requested transport type, &apos;{0}&apos; is not supported..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.MessageSizeExceeded">
+            <summary>
+              Looks up a localized string similar to The message (id:{0}, size:{1} bytes) is larger than is currently allowed ({2} bytes)..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.MissingConnectionInformation">
+            <summary>
+              Looks up a localized string similar to The connection string used for an Event Hub client must specify the Event Hubs namespace host, and a Shared Access Signature (both the name and value) to be valid. The path to an Event Hub must be included in the connection string or specified separately..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OnlyOneEventHubNameMayBeSpecified">
+            <summary>
+              Looks up a localized string similar to The path to an Event Hub may be specified as part of the connection string or as a separate value, but not both..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ProxyMustUseWebSockets">
+            <summary>
+              Looks up a localized string similar to A proxy may only be used for a web sockets connection..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ResourceMustMatchSharedAccessSignature">
+            <summary>
+              Looks up a localized string similar to The requested resource, &apos;{0}&apos;, does not match the resource of the shared access signature, &apos;{1}&apos;. A token cannot be issued..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.RetryOptionsMustBeSet">
+            <summary>
+              Looks up a localized string similar to Retry options must be specified; if no retry is desired, please set the maximum number of retries to 0. To provide a custom retry policy, please assign it on the client directly..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.RunningEventProcessorCannotPerformOperation">
+            <summary>
+              Looks up a localized string similar to The event processor is already running and needs to be stopped in order to perform this operation..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.SharedAccessKeyIsRequired">
+            <summary>
+              Looks up a localized string similar to In order to update the signature, a shared access key must have been provided when the shared access signature was created..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.SharedKeyCredentialCannotGenerateTokens">
+            <summary>
+              Looks up a localized string similar to A shared key credential is unable to generate a token directly. Please use this credential when creating an Event Hub Client, for proper generation of shared key tokens..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.TimeoutMustBePositive">
+            <summary>
+              Looks up a localized string similar to A timeout value must be positive. To request using the default timeout, please use TimeSpan.Zero or null..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.TimeSpanMustBeNonNegative">
+            <summary>
+              Looks up a localized string similar to Argument {0} must be a non-negative timespan value. The provided value was {1}..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.TrackLastEnqueuedEventPropertiesNotSet">
+            <summary>
+              Looks up a localized string similar to This information is only available when TrackLastEnqueuedEventProperties is set on the Event Hub consumer options..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.UnknownCommunicationException">
+            <summary>
+              Looks up a localized string similar to An unknown error was encountered while communicating with the Event Hubs service..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.UnknownConnectionType">
+            <summary>
+              Looks up a localized string similar to The specified connection type, &quot;{0}&quot;, is not recognized as valid in this context..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.UnknownRetryMode">
+            <summary>
+              Looks up a localized string similar to The requested retry mode, &apos;{0}&apos;, is not known; a retry delay canot be determined..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.UnrecoverableException">
+            <summary>
+              Looks up a localized string similar to An unrecoverable exception was encountered that left the environment in a bad state..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.UnsupportedCredential">
+            <summary>
+              Looks up a localized string similar to The credential is not a known and supported credential type. Please use a JWT credential or shared key credential..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.UnsupportedTransportEventType">
+            <summary>
+              Looks up a localized string similar to The requested transport event type, &apos;{0}&apos;, is not supported by the active transport client..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ValueMustBeAtLeast">
+            <summary>
+              Looks up a localized string similar to The value supplied must be greater than or equal to {0}..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.ValueOutOfRange">
+            <summary>
+              Looks up a localized string similar to The value supplied must be between {0} and {1}..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.BlobsResourceDoesNotExist">
+            <summary>
+              Looks up a localized string similar to The Azure Storage Blobs container or blob used by the Event Processor Client does not exist..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.CannotCreateCheckpointForEmptyEvent">
+            <summary>
+              Looks up a localized string similar to A checkpoint cannot be created or updated using an empty event..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.HandlerHasAlreadyBeenAssigned">
+            <summary>
+              Looks up a localized string similar to Another handler has already been assigned to this event and there can be only one..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.HandlerHasNotBeenAssigned">
+            <summary>
+              Looks up a localized string similar to This handler has not been previously assigned to this event..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationListOwnership">
+            <summary>
+              Looks up a localized string similar to Retrieving list of ownership from the storage service..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationGetPartitionIds">
+            <summary>
+              Looks up a localized string similar to Retrieving list of partition identifiers from a Consumer Client..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationListCheckpoints">
+            <summary>
+              Looks up a localized string similar to Retrieving list of checkpoints from the storage service..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationLoadBalancing">
+            <summary>
+              Looks up a localized string similar to Executing a load balancing cycle..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationClaimOwnership">
+            <summary>
+              Looks up a localized string similar to Attempting to claim a new ownership in the storage service..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationRenewOwnership">
+            <summary>
+              Looks up a localized string similar to Attempting to renew all of the processor's partition ownership in the storage service..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationReadEvents">
+            <summary>
+              Looks up a localized string similar to Reading events from the Event Hubs service..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationEventProcessingLoop">
+            <summary>
+              Looks up a localized string similar to Performing the main Event Processor loop..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OperationSurrenderOwnership">
+            <summary>
+              Looks up a localized string similar to Surrendering ownership of a partition..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.CannotReadLastEnqueuedEventPropertiesWithoutEvent">
+            <summary>
+              Looks up a localized string similar to The last enqueued event properties cannot be read when an event is not available..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.AggregateEventProcessingExceptionMessage">
+            <summary>
+              Looks up a localized string similar to One or more exceptions occured during event processing.  Please see the inner exceptions for more detail..
+            </summary>
+        </member>
+        <member name="P:Azure.Messaging.EventHubs.Resources.OnlyOneSharedAccessAuthorizationMayBeSpecified">
+            <summary>
+              Looks up a localized string similar to The authorization for a connection string may specifiy a shared key or precomputed shared access signature, but not both.  Please verify that your connection string does not have the `SharedAccessSignature` token if you are passing the  `SharedKeyName` and `SharedKey`..
+            </summary>
+        </member>
+        <member name="T:Azure.Core.Argument">
+             <summary>
+               Provides a consistent means for verifying arguments and other invariants for a given
+               member.
+             </summary>
+            
+             <remarks>
+               This class extends the <see cref="T:Azure.Core.Argument" /> type, referenced as a partial
+               class via shared source; the base partial class definition may be found in the "SharedSource"
+               folder of this project.
+             </remarks>
+            
+            <summary>
+            Argument validation.
+            </summary>
+            <remarks>
+              <para>This class should be shared via source using Azure.Core.props and contain only common argument validation.
+                It is declared partial so that you can use the same familiar class name but extend it with project-specific validation.
+                To extend the functionality of this class, just declare your own partial <see cref="T:Azure.Core.Argument"/> class with project-specific methods.
+              </para>
+              <para>
+                Be sure to document exceptions thrown by these methods on your public methods.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotEmptyOrWhiteSpace(System.String,System.String)">
+             <summary>
+               Ensures that an argument's value is a string comprised of only whitespace, though
+               <c>null</c> is considered a valid value.  An <see cref="T:System.ArgumentException" /> is thrown
+               if that invariant is not met.
+             </summary>
+            
+             <param name="argumentValue">The value of the argument to verify.</param>
+             <param name="argumentName">The name of the argument being considered.</param>
+            
+             <exception cref="T:System.ArgumentException">The argument is empty or contains only white-space.</exception>
+            
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotTooLong(System.String,System.Int32,System.String)">
+             <summary>
+               Ensures that a string argument's length is below a maximum allowed threshold,
+               throwing an <see cref="T:System.ArgumentOutOfRangeException" /> if that invariant is not met.
+             </summary>
+            
+             <param name="argumentValue">The value of the argument to verify.</param>
+             <param name="maximumLength">The maximum allowable length for the <paramref name="argumentValue"/>; its length must be less than or equal to this value.</param>
+             <param name="argumentName">The name of the argument being considered.</param>
+            
+             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="argumentValue"/> exceeds <paramref name="maximumLength"/> characters.</exception>
+            
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotNegative(System.TimeSpan,System.String)">
+             <summary>
+               Ensures that an argument's value is not a negative value, throwing an
+               <see cref="T:System.ArgumentOutOfRangeException" /> if that invariant is not met.
+             </summary>
+            
+             <param name="argumentValue">The value of the argument to verify.</param>
+             <param name="argumentName">The name of the argument being considered.</param>
+            
+             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="argumentValue"/> is a negative <see cref="T:System.TimeSpan"/> value.</exception>
+            
+        </member>
+        <member name="M:Azure.Core.Argument.AssertAtLeast(System.Int64,System.Int64,System.String)">
+             <summary>
+               Ensures that an argument's value is at least as large as a given lower bound, throwing
+               <see cref="T:System.ArgumentException" /> if that invariant is not met.
+             </summary>
+            
+             <param name="argumentValue">The value of the argument to verify.</param>
+             <param name="minimumValue">The minimum to use for comparison; <paramref name="argumentValue"/> must be greater than or equal to this value.</param>
+             <param name="argumentName">The name of the argument being considered.</param>
+            
+             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="argumentValue"/> is less than <paramref name="minimumValue"/>.</exception>
+            
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotDisposed(System.Boolean,System.String)">
+             <summary>
+               Ensures that an instance has not been disposed, throwing an
+               <see cref="T:System.ObjectDisposedException" /> if that invariant is not met.
+             </summary>
+            
+             <param name="wasDisposed"><c>true</c> if the target instance has been disposed; otherwise, <c>false</c>.</param>
+             <param name="targetName">The name of the target instance that is being verified.</param>
+            
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotClosed(System.Boolean,System.String)">
+             <summary>
+               Ensures that an instance has not been closed, throwing an
+               <see cref="T:Azure.Messaging.EventHubs.EventHubsException" /> if that invariant is not met.
+             </summary>
+            
+             <param name="wasClosed"><c>true</c> if the target instance has been closed; otherwise, <c>false</c>.</param>
+             <param name="targetName">The name of the target instance that is being verified.</param>
+            
+             <exception cref="T:Azure.Messaging.EventHubs.EventHubsException"><paramref name="wasClosed"/> is <c>true</c>.</exception>
+            
+        </member>
+        <member name="M:Azure.Core.Argument.AssertWellFormedEventHubsNamespace(System.String,System.String)">
+             <summary>
+               Ensures that an argument's value is a well-formed Event Hubs fully qualified namespace value,
+               throwing a <see cref="T:System.ArgumentException" /> if that invariant is not met.
+             </summary>
+            
+             <param name="argumentValue">The argument value.</param>
+             <param name="argumentName">Name of the argument.</param>
+            
+            
+             <exception cref="T:System.ArgumentException"><paramref name="argumentValue"/> is not a well-formed Event Hubs fully qualified namespace.</exception>
+            
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotNull``1(``0,System.String)">
+            <summary>
+            Throws if <paramref name="value"/> is null.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotNull``1(System.Nullable{``0},System.String)">
+            <summary>
+            Throws if <paramref name="value"/> has not been initialized.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> has not been initialized.</exception>
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Throws if <paramref name="value"/> is null or an empty collection.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> is an empty collection.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotNullOrEmpty(System.String,System.String)">
+            <summary>
+            Throws if <paramref name="value"/> is null or an empty string.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> is an empty string.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotNullOrWhiteSpace(System.String,System.String)">
+            <summary>
+            Throws if <paramref name="value"/> is null, an empty string, or consists only of white-space characters.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> is an empty string or consists only of white-space characters.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+        </member>
+        <member name="M:Azure.Core.Argument.AssertNotDefault``1(``0@,System.String)">
+            <summary>
+            Throws if <paramref name="value"/> is the default value for type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of structure to validate which implements <see cref="T:System.IEquatable`1"/>.</typeparam>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> is the default value for type <typeparamref name="T"/>.</exception>
+        </member>
+        <member name="M:Azure.Core.Argument.AssertInRange``1(``0,``0,``0,System.String)">
+            <summary>
+            Throws if <paramref name="value"/> is less than the <paramref name="minimum"/> or greater than the <paramref name="maximum"/>.
+            </summary>
+            <typeparam name="T">The type of to validate which implements <see cref="T:System.IComparable`1"/>.</typeparam>
+            <param name="value">The value to validate.</param>
+            <param name="minimum">The minimum value to compare.</param>
+            <param name="maximum">The maximum value to compare.</param>
+            <param name="name">The name of the parameter.</param>
+        </member>
+        <member name="T:Azure.Core.Pipeline.ActivityExtensions">
+            <summary>
+            HACK HACK HACK. Some runtime environments like Azure.Functions downgrade System.Diagnostic.DiagnosticSource package version causing method not found exceptions in customer apps
+            This type is a temporary workaround to avoid the issue.
+            </summary>
+        </member>
+        <member name="T:Azure.Core.Pipeline.TaskExtensions.Enumerable`1">
+            <summary>
+            Both <see cref="T:Azure.Core.Pipeline.TaskExtensions.Enumerable`1"/> and <see cref="T:Azure.Core.Pipeline.TaskExtensions.Enumerator`1"/> are defined as public structs so that foreach can use duck typing
+            to call <see cref="M:Azure.Core.Pipeline.TaskExtensions.Enumerable`1.GetEnumerator"/> and avoid heap memory allocation.
+            Please don't delete this method and don't make these types private.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+    </members>
+</doc>

@@ -17,12 +17,17 @@ namespace queueStorageExample
 
         static async Task Main(string[] args)
         {
+            await createQueue();
+            for (int i = 0; i <= 10; i++)
+            {
+                await sendMessage();
+            }
 
-            await sendMessage();
-
-            await recieveMessage();
+            //await recieveMessage();
             Console.ReadLine();
         }
+
+
 
         static async Task createQueue()
         {
@@ -34,11 +39,11 @@ namespace queueStorageExample
             var message = new CloudQueueMessage(createMessage());
 
             await queue.AddMessageAsync(message);
+            Console.WriteLine("Sent");
         }
 
         static async Task recieveMessage()
         {
-
             while (true)
             {
                 CloudQueueMessage message = await queue.GetMessageAsync();
